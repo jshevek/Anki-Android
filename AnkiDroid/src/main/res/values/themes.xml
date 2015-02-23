@@ -53,6 +53,33 @@
         <item name="android:spinnerDropDownItemStyle">@style/Blue.Widget.DropDownItem.Spinner</item>
     </style>
 
+    <!-- Deep black Theme -->
+    <style name="Theme_DeepBlack" parent="@style/Theme_Base_Custom_Light">
+        <item name="android:buttonStyle">@style/DeepBlack.Button</item>
+        <item name="android:buttonStyleSmall">@style/DeepBlack.Button.Small</item>
+        <item name="android:buttonStyleToggle">@style/DeepBlack.Button.Toggle</item>
+        <item name="android:checkboxStyle">@style/DeepBlack.CompoundButton.CheckBox</item>
+        <item name="android:colorForeground">#FFFF</item>
+        <item name="android:colorBackground">@color/deepblack_background</item>
+        <item name="android:editTextStyle">@style/DeepBlack.Edittext</item>
+        <item name="android:radioButtonStyle">@style/DeepBlack.CompoundButton.RadioButton</item>
+
+        <!-- Action bar styles -->
+        <item name="actionBarStyle">@style/DeepBlack.ActionBarStyle</item>
+        <item name="android:actionBarStyle" tools:targetApi="11">@style/DeepBlack.ActionBarStyle</item>
+
+        <!-- Dialog styles -->
+        <item name="android:alertDialogStyle">@style/DeepBlack.AlertDialog</item>
+        <item name="android:listChoiceIndicatorSingle">@drawable/deepblack_btn_radio</item>
+        <item name="android:listChoiceIndicatorMultiple">@drawable/deepblack_btn_check</item>
+        <item name="android:listViewStyle">@style/DeepBlack.Widget.ListView</item>
+        <item name="android:dropDownListViewStyle">@style/DeepBlack.Widget.ListView.DropDown</item>
+        <item name="android:listDivider">@drawable/deepblack_listdivider</item>
+        <item name="android:listPreferredItemHeight">56dip</item>
+        <item name="android:spinnerDropDownItemStyle">@style/DeepBlack.Widget.DropDownItem.Spinner</item>
+    </style>
+
+
     <!-- White Theme -->
     <style name="Theme_White" parent="@style/Theme_Base_Custom_Light">
         <item name="android:buttonStyle">@style/White.Button</item>

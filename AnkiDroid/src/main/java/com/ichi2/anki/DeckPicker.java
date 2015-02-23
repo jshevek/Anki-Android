@@ -38,16 +38,19 @@ import android.graphics.PixelFormat;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Debug;
 import android.os.Message;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.view.Window;
@@ -58,6 +61,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.amlcurran.showcaseview.OnShowcaseEventListener;
 import com.github.amlcurran.showcaseview.ShowcaseView;
@@ -169,6 +173,8 @@ public class DeckPicker extends NavigationDrawerActivity implements OnShowcaseEv
     boolean mShowShowcaseView = false;
     // flag asking user to do a full sync which is used in upgrade path
     boolean mRecommendFullSync = false;
+
+
 
     // ----------------------------------------------------------------------------
     // LISTENERS
@@ -398,7 +404,7 @@ public class DeckPicker extends NavigationDrawerActivity implements OnShowcaseEv
 
         SharedPreferences preferences = restorePreferences();
 
-        View mainView = getLayoutInflater().inflate(R.layout.deck_picker, null);
+        final View mainView = getLayoutInflater().inflate(R.layout.deck_picker, null);
         setContentView(mainView);
 
         // check, if tablet layout
@@ -424,32 +430,32 @@ public class DeckPicker extends NavigationDrawerActivity implements OnShowcaseEv
                 "sep", "dyn" }, new int[] { R.id.DeckPickerName, R.id.deckpicker_new, R.id.deckpicker_lrn,
                 R.id.deckpicker_rev, // R.id.deckpicker_bar_mat, R.id.deckpicker_bar_all,
                 R.id.deckpicker_deck, R.id.DeckPickerName });
+
         mDeckListAdapter.setViewBinder(new SimpleAdapter.ViewBinder() {
             @Override
             public boolean setViewValue(View view, Object data, String text) {
+                Log.e("JS", "setViewBinder");
+//                Themes.loadTheme();  // Compensate for improper setup, remove this line when fixed
                 if (view.getId() == R.id.deckpicker_deck) {
-                    if (text.equals("top")) {
-                        view.setBackgroundResource(R.drawable.white_deckpicker_top);
-                        return true;
-                    } else if (text.equals("bot")) {
-                        view.setBackgroundResource(R.drawable.white_deckpicker_bottom);
-                        return true;
-                    } else if (text.equals("ful")) {
-                        view.setBackgroundResource(R.drawable.white_deckpicker_full);
-                        return true;
-                    } else if (text.equals("cen")) {
-                        view.setBackgroundResource(R.drawable.white_deckpicker_center);
-                        return true;
-                    }
+                    view.setBackgroundResource(Themes.getDeckpickerListElementBackground(text));
+
+//                    Themes.setTextColor(view);
+                    return true;
                 } else if (view.getId() == R.id.DeckPickerName) {
+                    // What do d0 and d1 signify?
                     if (text.equals("d0")) {
-                        ((TextView) view).setTextColor(getResources().getColor(R.color.non_dyn_deck));
+//                        ((TextView) view).setTextColor(getResources().getColor(R.color.non_dyn_deck));
+//                        ((TextView) view).setTextColor(getResources().getColor(android.R.color.holo_red_light));
+                        ((TextView) view).setTextColor(Themes.getForegroundColor());
+
                         return true;
                     } else if (text.equals("d1")) {
-                        ((TextView) view).setTextColor(getResources().getColor(R.color.dyn_deck));
+//                        ((TextView) view).setTextColor(Themes.getForegroundColor());
+
                         return true;
                     }
                 } else if (view.getId() == R.id.deckpicker_new) {
+                    ((TextView) view).setTextColor(getResources().getColor(R.color.dyn_deck));
                     // Set the right color, light gray or blue.
                     ((TextView) view).setTextColor((text.equals("0")) ? getResources().getColor(R.color.zero_count)
                             : getResources().getColor(R.color.new_count));
@@ -480,6 +486,8 @@ public class DeckPicker extends NavigationDrawerActivity implements OnShowcaseEv
                 String deckName = getCol().getDecks().name(mContextMenuDid);
                 boolean isCollapsed = getCol().getDecks().get(mContextMenuDid).optBoolean("collapsed", false);
                 showDialogFragment(DeckPickerContextMenu.newInstance(deckName, isCollapsed));
+
+
                 return true;
             }
         });
@@ -497,6 +505,13 @@ public class DeckPicker extends NavigationDrawerActivity implements OnShowcaseEv
             // Otherwise just update the deck list
             loadCounts();
         }
+        if (mainView instanceof ViewGroup) {
+//            Log.e("JS", "recursively theme");
+//            Themes.recursivelyTheme((ViewGroup) mainView);
+        } else {
+            Log.e("JS", "expected viewgroup");
+        }
+
     }
 
 
@@ -775,6 +790,7 @@ public class DeckPicker extends NavigationDrawerActivity implements OnShowcaseEv
         Timber.d("onDestroy()");
     }
 
+    static boolean startedTracing = false;  // tmp hack for tracing JS
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -783,7 +799,39 @@ public class DeckPicker extends NavigationDrawerActivity implements OnShowcaseEv
             finishWithAnimation();
             return true;
         }
+
+        if ((keyCode == KeyEvent.KEYCODE_VOLUME_UP)) {
+            if (! startedTracing) {
+                Log.e("JS", "volume up keydown - starting method tracing");
+                Toast.makeText(this, "start tracing ", Toast.LENGTH_SHORT).show();
+                Debug.startMethodTracing("themes");
+                startedTracing = true;
+            } else {
+                Log.e("JS", "volume up keydown - stopping method tracing");
+                Toast.makeText(this, "stop tracing ", Toast.LENGTH_SHORT).show();
+                Debug.stopMethodTracing();
+
+            }
+
+        }
+
+        if ((keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)){
+            Themes.forceIterateTheme();  // Hack for dev/testing only.
+            Themes.applyTheme(this, Themes.getTheme());
+            Themes.loadTheme();
+            Themes.setContentStyle(getCurrentFocus().getRootView(), Themes.CALLER_DECKPICKER);
+            Log.e("JS", "keydown");
+            Toast.makeText(this, "Theme: "+Themes.getThemeName(), Toast.LENGTH_SHORT).show();
+            finish();
+            startActivity(getIntent());
+            return true;
+        }
+//        if ((keyCode == KeyEvent.KEYCODE_VOLUME_UP)){
+//            return true;
+//        }
+
         return super.onKeyDown(keyCode, event);
+
     }
 
 

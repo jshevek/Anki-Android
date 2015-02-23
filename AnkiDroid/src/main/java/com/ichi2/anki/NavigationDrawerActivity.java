@@ -183,6 +183,7 @@ public class NavigationDrawerActivity extends AnkiActivity {
     public void setTitle(CharSequence title) {
         mTitle = title;
         getSupportActionBar().setTitle(mTitle);
+
     }
 
     /**

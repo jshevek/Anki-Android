@@ -48,8 +48,10 @@ public class StudyOptionsActivity extends NavigationDrawerActivity implements St
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Themes.applyTheme(this);
-        super.onCreate(savedInstanceState);
+        // js note: current crashed when theme is set to Android[Dark|Light], while blue and white work fine
+
         // The empty frame layout is a workaround for fragments not showing when they are added
+        super.onCreate(savedInstanceState);
         // to android.R.id.content when an action bar is used in Android 2.1 (and potentially
         // higher) with the appcompat package.
         View mainView = getLayoutInflater().inflate(R.layout.studyoptions, null);

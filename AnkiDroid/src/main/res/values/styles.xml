@@ -246,4 +246,97 @@
         <item name="android:windowExitAnimation">@anim/translucent_exit</item>
     </style>
 
+
+    <!-- White Theme -->
+    <style name="DeepBlack">
+        <item name="android:background">@color/white_background</item>
+    </style>
+
+    <style name="DeepBlack.Button" parent="@android:style/Widget.Button">
+        <item name="android:background">@drawable/white_btn_default</item>
+        <item name="android:textColor">@color/white_buttontext</item>
+    </style>
+
+    <style name="DeepBlack.Button.Small" parent="@android:style/Widget.Button.Small">
+        <item name="android:background">@drawable/white_btn_small</item>
+    </style>
+
+    <style name="DeepBlack.Button.Toggle" parent="@android:style/Widget.Button">
+        <item name="android:background">@drawable/deepblack_btn_toggle_bg</item>
+    </style>
+
+    <style name="DeepBlack.CompoundButton"></style>
+
+    <style name="DeepBlack.CompoundButton.CheckBox" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/deepblack_btn_check</item>
+    </style>
+
+    <style name="DeepBlack.CompoundButton.RadioButton">
+        <item name="android:button">?android:attr/listChoiceIndicatorSingle</item>
+        <item name="android:background">@drawable/deepblack_btn_radio</item>
+    </style>
+
+    <style name="DeepBlack.AlertDialog">
+        <item name="android:fullDark">@drawable/deepblack_popup_full_bright</item>
+        <item name="android:topDark">@drawable/deepblack_popup_top_bright</item>
+        <item name="android:centerDark">@drawable/deepblack_popup_center_bright</item>
+        <item name="android:bottomDark">@drawable/deepblack_popup_bottom_bright</item>
+        <item name="android:fullBright">@drawable/deepblack_popup_full_bright</item>
+        <item name="android:topBright">@drawable/deepblack_popup_top_bright</item>
+        <item name="android:centerBright">@drawable/deepblack_popup_center_bright</item>
+        <item name="android:bottomBright">@drawable/deepblack_popup_bottom_bright</item>
+        <item name="android:bottomMedium">@drawable/deepblack_popup_bottom_medium</item>
+        <item name="android:centerMedium">@drawable/deepblack_popup_center_medium</item>
+        <item name="android:buttonStyle">@style/DeepBlack.Button</item>
+        <item name="android:textColor">#00FF00</item>
+        <item name="android:typeface">monospace</item>
+        <item name="android:textSize">30sp</item>
+    </style>
+
+
+    <style name="DeepBlack.Spinner">
+        <item name="android:indeterminate">true</item>
+        <item name="android:indeterminateDrawable">@drawable/deepblack_spinner</item>
+        <item name="android:indeterminateDuration">2000</item>
+        <item name="android:indeterminateOnly">true</item>
+    </style>
+
+    <style name="DeepBlack.Spinner.White">
+        <item name="android:indeterminate">true</item>
+        <item name="android:indeterminateDrawable">@drawable/deepblack_black_spinner</item>
+        <item name="android:indeterminateDuration">2000</item>
+        <item name="android:indeterminateOnly">true</item>
+    </style>
+
+    <style name="DeepBlack.Edittext" parent="@android:style/Widget.EditText">
+        <item name="android:background">@drawable/deepblack_edit_text</item>
+    </style>
+
+    <style name="DeepBlack.Widget.ListView" parent="@android:Widget.ListView">
+        <item name="android:listSelector">@drawable/deepblack_list_selector_background</item>
+    </style>
+
+    <style name="DeepBlack.Widget.ListView.DropDown" parent="@android:Widget.ListView.DropDown">
+        <item name="android:listSelector">@drawable/deepblack_list_selector_background</item>
+    </style>
+
+    <style name="DeepBlack.Widget.ListView.Menu" parent="@android:Widget.ListView.Menu">
+        <item name="android:listSelector">@drawable/deepblack_list_selector_background</item>
+    </style>
+
+    <style name="DeepBlack.Widget.Spinner" parent="@android:style/Widget.Spinner">
+        <item name="android:background">@drawable/deepblack_btn_dropdown</item>
+    </style>
+
+    <style name="DeepBlack.Widget.DropDownItem.Spinner" parent="@android:style/Widget.DropDownItem.Spinner">
+        <item name="android:checkMark">@drawable/deepblack_btn_radio</item>
+    </style>
+
+    <style name="DeepBlack.ActionBarStyle" parent="@style/Widget.AppCompat.Light.ActionBar.Solid">
+        <item name="android:background">@color/deepblack_actionbar_background</item>
+        <item name="background">@color/deepblack_actionbar_background</item>
+    </style>
+
+    <!-- TODO  change AppCompat.Light.ActionBar... to Dark -->
+
 </resources>
