@@ -96,12 +96,12 @@ public class CompatV7 implements Compat {
         actionBarActivity.supportInvalidateOptionsMenu();
     }
 
-
-    public void setActionBarBackground(Activity activity, int color) {
+    // Currently uses R.color ID, not color value. Later decide which and standardize all methods
+    public void setActionBarBackground(Activity activity, int colorID) {
         ActionBarActivity actionBarActivity = (ActionBarActivity) activity;
         ActionBar actionBar = actionBarActivity.getSupportActionBar();
         if (actionBar != null) {
-            actionBar.setBackgroundDrawable(new ColorDrawable(activity.getResources().getColor(color)));
+            actionBar.setBackgroundDrawable(new ColorDrawable(activity.getResources().getColor(colorID)));
         }
     }
 
@@ -114,12 +114,16 @@ public class CompatV7 implements Compat {
         setTitle(activity, title, textColor, false);
     }
 
+    // Currently textColor is a color value, not a R.color id.
     public void setTitle(Activity activity, String title, int textColor, boolean inverted) {
         ActionBarActivity actionBarActivity = (ActionBarActivity) activity;
         ActionBar actionBar = actionBarActivity.getSupportActionBar();
+        int colorValue = textColor;
+        if (inverted) {
+            colorValue = activity.getResources().getColor(R.color.white);
+        }
         if (actionBar != null) {
-            CharacterStyle span = new ForegroundColorSpan(activity.getResources().getColor(
-                    inverted ? R.color.white : textColor));  // do more intelligent inversion later
+            CharacterStyle span = new ForegroundColorSpan(colorValue);  // do more intelligent inversion later
             SpannableStringBuilder ssb = new SpannableStringBuilder(title);
             ssb.setSpan(span, 0, ssb.length(), 0);
             actionBar.setTitle(ssb);

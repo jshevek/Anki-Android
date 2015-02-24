@@ -71,13 +71,15 @@ public class Themes {
 
     private static int mCurrentTheme = -1;
 
-    private static int mProgressbarsBackgroundColor;
-    private static int mProgressbarsFrameColor;
-    private static int mProgressbarsMatureColor;
-    private static int mProgressbarsYoungColor;
-    private static int mProgressbarsDeckpickerYoungColor;
-    private static int mReviewerBackground = 0;
-    private static int mReviewerProgressbar = 0;
+    // TODO Use mBackgroundColor, mReviewerBackgroundColor as color value or as ID?
+
+    private static int mProgressbarsBackgroundColorID;
+    private static int mProgressbarsFrameColorID;
+    private static int mProgressbarsMatureColorID;
+    private static int mProgressbarsYoungColorID;
+    private static int mProgressbarsDeckpickerYoungColorID;
+    private static int mReviewerBackgroundID = 0;
+    private static int mReviewerProgressbarColorID = 0;
     private static int mFlashcardBorder = 0;
     private static int mDeckpickerItemBorder = 0;
     private static int mTitleStyle = 0;
@@ -331,7 +333,7 @@ public class Themes {
                 break;
 
             case CALLER_REVIEWER:
-                ((View) view.findViewById(R.id.main_layout)).setBackgroundResource(mReviewerBackground);
+                ((View) view.findViewById(R.id.main_layout)).setBackgroundResource(mReviewerBackgroundID);
                 ((View) view.findViewById(R.id.flashcard_border)).setBackgroundResource(mFlashcardBorder);
                 switch (mCurrentTheme) {
                     case THEME_ANDROID_DARK:
@@ -369,7 +371,7 @@ public class Themes {
                 break;
 
             case CALLER_FEEDBACK:
-                ((TextView) view).setTextColor(mProgressbarsFrameColor);
+                ((TextView) view).setTextColor(mForegroundColor);
                 break;
 
             case CALLER_CARD_EDITOR:
@@ -402,12 +404,12 @@ public class Themes {
         switch (mCurrentTheme) {
             case THEME_ANDROID_DARK:
                 mDialogBackgroundColor = mContext.getResources().getColor(R.color.card_browser_background);
-                mProgressbarsBackgroundColor = mContext.getResources().getColor(R.color.studyoptions_progressbar_background_default);
-                mProgressbarsFrameColor = mContext.getResources().getColor(R.color.studyoptions_progressbar_frame_default);
-                mProgressbarsMatureColor = mContext.getResources().getColor(R.color.studyoptions_progressbar_mature_default);
-                mProgressbarsYoungColor = mContext.getResources().getColor(R.color.studyoptions_progressbar_young_default);
-                mProgressbarsDeckpickerYoungColor = mContext.getResources().getColor(R.color.deckpicker_progressbar_young_dark);
-                mReviewerBackground = 0;
+                mProgressbarsBackgroundColorID = R.color.studyoptions_progressbar_background_default;
+                mProgressbarsFrameColorID = R.color.studyoptions_progressbar_frame_default;
+                mProgressbarsMatureColorID = R.color.studyoptions_progressbar_mature_default;
+                mProgressbarsYoungColorID = R.color.studyoptions_progressbar_young_default;
+                mProgressbarsDeckpickerYoungColorID = R.color.deckpicker_progressbar_young_dark;
+                mReviewerBackgroundID = 0;
                 mFlashcardBorder = 0;
                 mDeckpickerItemBorder = 0;
                 mTitleStyle = 0;
@@ -416,7 +418,7 @@ public class Themes {
                 mWallpaper = 0;
                 mToastBackground = 0;
                 mBackgroundDarkColor = 0;
-                mReviewerProgressbar = 0;
+                mReviewerProgressbarColorID = 0;
                 mCardbrowserItemBorder = new int[] { 0, R.color.card_browser_marked, R.color.card_browser_suspended,
                         R.color.card_browser_marked };
                 mChartColors = new int[] { Color.WHITE, Color.BLACK };
@@ -440,12 +442,12 @@ public class Themes {
                 break;
 
             case THEME_ANDROID_LIGHT:
-                mProgressbarsBackgroundColor = mContext.getResources().getColor(R.color.studyoptions_progressbar_background_light);
-                mProgressbarsFrameColor = mContext.getResources().getColor(R.color.studyoptions_progressbar_frame_light);
-                mProgressbarsMatureColor = mContext.getResources().getColor(R.color.studyoptions_progressbar_mature_light);
-                mProgressbarsYoungColor = mContext.getResources().getColor(R.color.studyoptions_progressbar_young_light);
-                mProgressbarsDeckpickerYoungColor = mContext.getResources().getColor(R.color.deckpicker_progressbar_young_light);
-                mReviewerBackground = 0;
+                mProgressbarsBackgroundColorID = R.color.studyoptions_progressbar_background_light;
+                mProgressbarsFrameColorID = R.color.studyoptions_progressbar_frame_light;
+                mProgressbarsMatureColorID = R.color.studyoptions_progressbar_mature_light;
+                mProgressbarsYoungColorID = R.color.studyoptions_progressbar_young_light;
+                mProgressbarsDeckpickerYoungColorID = R.color.deckpicker_progressbar_young_light;
+                mReviewerBackgroundID = 0;
                 mFlashcardBorder = 0;
                 mDeckpickerItemBorder = 0;
                 mTitleStyle = 0;
@@ -458,7 +460,7 @@ public class Themes {
                 // Fix mContext.getResources().getColor() for this
                 mCardbrowserItemBorder = new int[] { 0, R.color.card_browser_marked, R.color.card_browser_suspended,
                         R.color.card_browser_marked };
-                mReviewerProgressbar = mProgressbarsYoungColor;
+                mReviewerProgressbarColorID = mProgressbarsYoungColorID;
                 mChartColors = new int[] { Color.BLACK, Color.WHITE };
                 mPopupTopDark = R.drawable.popup_top_dark;
                 mPopupTopBright = R.drawable.popup_top_bright;
@@ -479,12 +481,12 @@ public class Themes {
                 break;
 
             case THEME_BLUE:
-                mProgressbarsBackgroundColor = mContext.getResources().getColor(R.color.studyoptions_progressbar_background_blue);
-                mProgressbarsFrameColor = mContext.getResources().getColor(R.color.studyoptions_progressbar_frame_light);
-                mProgressbarsMatureColor = mContext.getResources().getColor(R.color.studyoptions_progressbar_mature_light);
-                mProgressbarsYoungColor = mContext.getResources().getColor(R.color.studyoptions_progressbar_young_blue);
-                mProgressbarsDeckpickerYoungColor = mContext.getResources().getColor(R.color.deckpicker_progressbar_young_light);
-                mReviewerBackground = mContext.getResources().getColor(R.color.reviewer_background);
+                mProgressbarsBackgroundColorID = R.color.studyoptions_progressbar_background_blue;
+                mProgressbarsFrameColorID = R.color.studyoptions_progressbar_frame_light;
+                mProgressbarsMatureColorID = R.color.studyoptions_progressbar_mature_light;
+                mProgressbarsYoungColorID = R.color.studyoptions_progressbar_young_blue;
+                mProgressbarsDeckpickerYoungColorID = R.color.deckpicker_progressbar_young_light;
+                mReviewerBackgroundID = R.color.reviewer_background;
                 mFlashcardBorder = R.drawable.blue_bg_webview;
                 mDeckpickerItemBorder = R.drawable.blue_bg_deckpicker;
                 mTitleStyle = R.drawable.blue_title;
@@ -495,7 +497,7 @@ public class Themes {
                 mToastBackground = R.drawable.blue_toast_frame;
                 mDialogBackgroundColor = mContext.getResources().getColor(R.color.background_dialog_blue);
                 mBackgroundDarkColor = mContext.getResources().getColor(R.color.background_dark_blue);
-                mReviewerProgressbar = mContext.getResources().getColor(R.color.reviewer_progressbar_session_blue);
+                mReviewerProgressbarColorID = R.color.reviewer_progressbar_session_blue;
                 mCardbrowserItemBorder = new int[] { R.drawable.blue_bg_cardbrowser,
                         R.drawable.blue_bg_cardbrowser_marked, R.drawable.blue_bg_cardbrowser_suspended,
                         R.drawable.blue_bg_cardbrowser_marked_suspended };
@@ -518,12 +520,12 @@ public class Themes {
                 break;
 
             case THEME_FLAT:
-                mProgressbarsBackgroundColor = mContext.getResources().getColor(R.color.studyoptions_progressbar_background_blue);
-                mProgressbarsFrameColor = mContext.getResources().getColor(R.color.studyoptions_progressbar_frame_light);
-                mProgressbarsMatureColor = mContext.getResources().getColor(R.color.studyoptions_progressbar_mature_light);
-                mProgressbarsYoungColor = mContext.getResources().getColor(R.color.studyoptions_progressbar_young_blue);
-                mProgressbarsDeckpickerYoungColor = mContext.getResources().getColor(R.color.deckpicker_progressbar_young_light);
-                mReviewerBackground = mContext.getResources().getColor(R.color.reviewer_background);
+                mProgressbarsBackgroundColorID = R.color.studyoptions_progressbar_background_blue;
+                mProgressbarsFrameColorID = R.color.studyoptions_progressbar_frame_light;
+                mProgressbarsMatureColorID = R.color.studyoptions_progressbar_mature_light;
+                mProgressbarsYoungColorID = R.color.studyoptions_progressbar_young_blue;
+                mProgressbarsDeckpickerYoungColorID = R.color.deckpicker_progressbar_young_light;
+                mReviewerBackgroundID = R.color.reviewer_background;
                 mFlashcardBorder = R.drawable.blue_bg_webview;
                 mDeckpickerItemBorder = R.drawable.blue_bg_deckpicker;
                 mTitleStyle = R.drawable.flat_title;
@@ -534,7 +536,7 @@ public class Themes {
                 mToastBackground = R.drawable.blue_toast_frame;
                 mDialogBackgroundColor = mContext.getResources().getColor(R.color.background_dialog_blue);
                 mBackgroundDarkColor = mContext.getResources().getColor(R.color.background_dark_blue);
-                mReviewerProgressbar = mContext.getResources().getColor(R.color.reviewer_progressbar_session_blue);
+                mReviewerProgressbarColorID = R.color.reviewer_progressbar_session_blue;
                 mCardbrowserItemBorder = new int[] { R.drawable.blue_bg_cardbrowser,
                         R.drawable.blue_bg_cardbrowser_marked, R.drawable.blue_bg_cardbrowser_suspended,
                         R.drawable.blue_bg_cardbrowser_marked_suspended };
@@ -560,12 +562,12 @@ public class Themes {
                 break;
 
             case THEME_WHITE:
-                mProgressbarsBackgroundColor = mContext.getResources().getColor(R.color.studyoptions_progressbar_background_blue);
-                mProgressbarsFrameColor = mContext.getResources().getColor(R.color.studyoptions_progressbar_frame_light);
-                mProgressbarsMatureColor = mContext.getResources().getColor(R.color.studyoptions_progressbar_mature_light);
-                mProgressbarsYoungColor = mContext.getResources().getColor(R.color.studyoptions_progressbar_young_blue);
-                mProgressbarsDeckpickerYoungColor = mContext.getResources().getColor(R.color.deckpicker_progressbar_young_light);
-                mReviewerBackground = mContext.getResources().getColor(R.color.white_background);
+                mProgressbarsBackgroundColorID = R.color.studyoptions_progressbar_background_blue;
+                mProgressbarsFrameColorID = R.color.studyoptions_progressbar_frame_light;  // Some previous uses suggest expecting color, not colorID
+                mProgressbarsMatureColorID = R.color.studyoptions_progressbar_mature_light;
+                mProgressbarsYoungColorID = R.color.studyoptions_progressbar_young_blue;
+                mProgressbarsDeckpickerYoungColorID = R.color.deckpicker_progressbar_young_light;
+                mReviewerBackgroundID = R.color.white_background;
                 mFlashcardBorder = R.drawable.white_bg_webview;
                 mTitleStyle = R.drawable.white_btn_default_normal;
                 mTitleTextColor = mContext.getResources().getColor(R.color.black);
@@ -577,7 +579,7 @@ public class Themes {
                 mToastBackground = R.drawable.white_toast_frame;
                 mDialogBackgroundColor = mContext.getResources().getColor(R.color.white);
                 mBackgroundDarkColor = mContext.getResources().getColor(R.color.background_dark_blue);
-                mReviewerProgressbar = mContext.getResources().getColor(R.color.reviewer_progressbar_session_blue);
+                mReviewerProgressbarColorID = R.color.reviewer_progressbar_session_blue;
                 mCardbrowserItemBorder = new int[] { R.drawable.white_bg_cardbrowser,
                         R.drawable.white_bg_cardbrowser_marked, R.drawable.white_bg_cardbrowser_suspended,
                         R.drawable.white_bg_cardbrowser_marked_suspended };
@@ -603,12 +605,12 @@ public class Themes {
                 break;
 
             case THEME_DEEPBLACK:
-                mProgressbarsBackgroundColor = mContext.getResources().getColor(R.color.studyoptions_progressbar_background_deepblack);
-                mProgressbarsFrameColor = mContext.getResources().getColor(R.color.studyoptions_progressbar_frame_deepblack);
-                mProgressbarsMatureColor = mContext.getResources().getColor(R.color.studyoptions_progressbar_mature_deepblack);
-                mProgressbarsYoungColor = mContext.getResources().getColor(R.color.studyoptions_progressbar_young_deepblack);
-                mProgressbarsDeckpickerYoungColor = mContext.getResources().getColor(R.color.deckpicker_progressbar_young_deepblack);
-                mReviewerBackground = mContext.getResources().getColor(R.color.deepblack_background);
+                mProgressbarsBackgroundColorID = R.color.studyoptions_progressbar_background_deepblack;
+                mProgressbarsFrameColorID = R.color.studyoptions_progressbar_frame_deepblack;
+                mProgressbarsMatureColorID = R.color.studyoptions_progressbar_mature_deepblack;
+                mProgressbarsYoungColorID = R.color.studyoptions_progressbar_young_deepblack;
+                mProgressbarsDeckpickerYoungColorID = R.color.deckpicker_progressbar_young_deepblack;
+                mReviewerBackgroundID = R.color.deepblack_background;
                 mFlashcardBorder = R.drawable.deepblack_bg_webview;
                 mTitleStyle = R.drawable.deepblack_btn_default_normal;
                 mTitleTextColor = mContext.getResources().getColor(R.color.deepblack_textcolor);
@@ -620,7 +622,7 @@ public class Themes {
                 mToastBackground = R.drawable.deepblack_toast_frame;
                 mDialogBackgroundColor = mContext.getResources().getColor(R.color.deepblack_background);
                 mBackgroundDarkColor = mContext.getResources().getColor(R.color.background_dark_blue);  // TODO tweak
-                mReviewerProgressbar = mContext.getResources().getColor(R.color.reviewer_progressbar_session_blue);
+                mReviewerProgressbarColorID = R.color.reviewer_progressbar_session_blue;
                 mCardbrowserItemBorder = new int[] { R.drawable.deepblack_bg_cardbrowser,
                         R.drawable.deepblack_bg_cardbrowser_marked, R.drawable.deepblack_bg_cardbrowser_suspended,
                         R.drawable.deepblack_bg_cardbrowser_marked_suspended };
