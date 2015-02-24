@@ -54,8 +54,11 @@ public interface Compat {
     public abstract void invalidateOptionsMenu(Activity activity);
     public abstract void setActionBarBackground(Activity activity, int color);
     public abstract void setTitle(Activity activity, String title, boolean inverted);
+    public abstract void setTitle(Activity activity, String title, int textColor);
     public abstract void setSubtitle(Activity activity, String title);
     public abstract void setSubtitle(Activity activity, String title, boolean inverted);
+    public abstract void setSubtitle(Activity activity, String title, int textColor);
+
     public abstract void setTtsOnUtteranceProgressListener(TextToSpeech tts);
     public abstract void disableDatabaseWriteAheadLogging(SQLiteDatabase db);
     public abstract void requestAudioFocus(AudioManager audioManager);

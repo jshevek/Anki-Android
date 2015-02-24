@@ -37,6 +37,7 @@ import android.widget.TextView;
 
 import com.ichi2.anim.ActivityTransitionAnimation;
 import com.ichi2.anki.stats.AnkiStatsTaskHandler;
+import com.ichi2.themes.Themes;
 
 import java.util.Locale;
 
@@ -74,7 +75,8 @@ public class NavigationDrawerActivity extends AnkiActivity {
         mDrawerList = (ListView) mainView.findViewById(R.id.left_drawer);
         mTitle = getTitle();
         mNavigationTitles = getResources().getStringArray(R.array.navigation_titles);
-        mNavigationImages = getResources().obtainTypedArray(R.array.drawer_images);
+        mNavigationImages = Themes.getNavigationImages(getResources());
+//        getResources().obtainTypedArray(R.array.drawer_images);
         // set a custom shadow that overlays the main content when the drawer opens
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
         // set up the drawer's list view with items and click listener
@@ -248,6 +250,7 @@ public class NavigationDrawerActivity extends AnkiActivity {
             // set the text and image according to lists specified in resources
             TextView txtTitle = (TextView) convertView.findViewById(R.id.drawer_list_item_text);
             txtTitle.setText(navDrawerTitles[position]);
+            txtTitle.setTextColor(Themes.getForegroundColor());
             txtTitle.setCompoundDrawablesWithIntrinsicBounds(navDrawerImages.getResourceId(position, -1), 0, 0, 0);
             // make current item bold
             if (NavigationDrawerActivity.this.mDrawerList.getCheckedItemPosition()==position) {

@@ -4,6 +4,7 @@ package com.ichi2.compat;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.AudioManager;
 import android.speech.tts.TextToSpeech;
@@ -104,13 +105,21 @@ public class CompatV7 implements Compat {
         }
     }
 
-
     public void setTitle(Activity activity, String title, boolean inverted) {
+        setSubtitle(activity,title, R.color.black, inverted );
+    }
+
+    @Override
+    public void setTitle(Activity activity, String title, int textColor) {
+        setTitle(activity, title, textColor, false);
+    }
+
+    public void setTitle(Activity activity, String title, int textColor, boolean inverted) {
         ActionBarActivity actionBarActivity = (ActionBarActivity) activity;
         ActionBar actionBar = actionBarActivity.getSupportActionBar();
         if (actionBar != null) {
             CharacterStyle span = new ForegroundColorSpan(activity.getResources().getColor(
-                    inverted ? R.color.white : R.color.black));
+                    inverted ? R.color.white : textColor));  // do more intelligent inversion later
             SpannableStringBuilder ssb = new SpannableStringBuilder(title);
             ssb.setSpan(span, 0, ssb.length(), 0);
             actionBar.setTitle(ssb);
@@ -118,25 +127,36 @@ public class CompatV7 implements Compat {
     }
 
 
+
+
     public void setSubtitle(Activity activity, String title) {
         setSubtitle(activity, title, false);
     }
 
-
     public void setSubtitle(Activity activity, String title, boolean inverted) {
-        ActionBarActivity actionBarActivity = (ActionBarActivity) activity;
+        setSubtitle(activity, title, R.color.black, inverted);
+    }
+
+        public void setSubtitle(Activity activity, String title, int textColorParam, boolean inverted) {
+        int textColor = textColorParam;
+            ActionBarActivity actionBarActivity = (ActionBarActivity) activity;
         ActionBar actionBar = actionBarActivity.getSupportActionBar();
         if (actionBar != null) {
             if (inverted) {
-                CharacterStyle span = new ForegroundColorSpan(activity.getResources().getColor(
-                        inverted ? R.color.white : R.color.black));
-                SpannableStringBuilder ssb = new SpannableStringBuilder(title);
-                ssb.setSpan(span, 0, ssb.length(), 0);
-                actionBar.setSubtitle(ssb);
+                textColor = R.color.white;  // Improve inversion
             } else {
-                actionBar.setSubtitle(title);
+                textColor = textColorParam;
             }
+            CharacterStyle span = new ForegroundColorSpan(activity.getResources().getColor(textColor));
+            actionBar.setSubtitle(title);
+            SpannableStringBuilder ssb = new SpannableStringBuilder(title);
+            ssb.setSpan(span, 0, ssb.length(), 0);
+            actionBar.setSubtitle(ssb);
         }
+    }
+
+    public void setSubtitle(Activity activity, String title, int textColor) {
+        setSubtitle(activity, title, textColor, false);
     }
 
 

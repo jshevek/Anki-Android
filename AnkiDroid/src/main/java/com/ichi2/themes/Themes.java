@@ -20,7 +20,11 @@ import android.content.Context;
 import android.content.DialogInterface.OnCancelListener;
 import android.content.DialogInterface.OnClickListener;
 import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 
@@ -744,6 +748,7 @@ public class Themes {
 
 
     public static void setTitleStyle(View view) {
+        loadTheme();
         view.setBackgroundResource(mTitleStyle);
         if (view instanceof TextView) {
             TextView tv = (TextView) view;
@@ -1171,6 +1176,27 @@ public class Themes {
 
         // Should never reach here:
         return R.drawable.white_deckpicker_center;
+
+    }
+
+    public static TypedArray getNavigationImages(Resources resources) {
+        TypedArray images = resources.obtainTypedArray(R.array.drawer_images);
+        // quick hack - just invert the regular images here. Later, create new images and import properly
+        float[] colorMatrix = {
+                -1.0f, 0, 0, 0, 255,    // red
+                0, -1.0f, 0, 0, 255,    // green
+                0, 0, -1.0f, 0, 255,    // blue
+                0, 0, 0, 1.0f, 0        // alpha
+        };
+        ColorFilter cf = new ColorMatrixColorFilter(new ColorMatrix(colorMatrix));
+
+        if (mCurrentTheme != THEME_DEEPBLACK) {
+            return images;
+        }else {
+            for (int i = 0; i < images.length(); i++) {
+                images[i]
+            }
+        }
 
     }
 }

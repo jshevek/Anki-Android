@@ -34,6 +34,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.res.Resources;
 import android.database.SQLException;
+import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.net.Uri;
 import android.os.Build;
@@ -401,6 +402,7 @@ public class DeckPicker extends NavigationDrawerActivity implements OnShowcaseEv
         super.onCreate(savedInstanceState);
 
         setTitle(getResources().getString(R.string.app_name));
+        setTitleColor(Color.WHITE);
 
         SharedPreferences preferences = restorePreferences();
 
@@ -434,7 +436,7 @@ public class DeckPicker extends NavigationDrawerActivity implements OnShowcaseEv
         mDeckListAdapter.setViewBinder(new SimpleAdapter.ViewBinder() {
             @Override
             public boolean setViewValue(View view, Object data, String text) {
-                Log.e("JS", "setViewBinder");
+//                Log.e("JS", "setViewBinder");
 //                Themes.loadTheme();  // Compensate for improper setup, remove this line when fixed
                 if (view.getId() == R.id.deckpicker_deck) {
                     view.setBackgroundResource(Themes.getDeckpickerListElementBackground(text));
