@@ -28,6 +28,9 @@ import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -612,7 +615,7 @@ public class Themes {
                 mProgressbarsDeckpickerYoungColorID = R.color.deckpicker_progressbar_young_deepblack;
                 mReviewerBackgroundID = R.color.deepblack_background;
                 mFlashcardBorder = R.drawable.deepblack_bg_webview;
-                mTitleStyle = R.drawable.deepblack_btn_default_normal;
+                mTitleStyle = R.drawable.deepblack_btn_default_normal;  // For dialogs?
                 mTitleTextColor = mContext.getResources().getColor(R.color.deepblack_textcolor);
                 mTextColor = mContext.getResources().getColor(R.color.deepblack_textcolor);
                 mTextViewStyle = R.drawable.deepblack_textview_padding;
@@ -1133,7 +1136,7 @@ public class Themes {
     }
 
     public static int getDeckpickerListElementBackground(String  text) {
-        Log.e("JS", "getDeckPicker...");
+//        Log.e("JS", "getDeckPicker...");
         // There is surely a smarter, cleaner way to do all of this
         if (text.equals("top")) {
             switch (mCurrentTheme) {
@@ -1187,5 +1190,11 @@ public class Themes {
         }else {
             return resources.obtainTypedArray(R.array.drawer_images_deepblack);
         }
+    }
+
+    public static Spannable getSpannableForegroundColor(CharSequence mTitle) {
+        SpannableString span = new SpannableString(mTitle);
+        span.setSpan(new ForegroundColorSpan(mForegroundColor), 0, mTitle.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+        return span;
     }
 }

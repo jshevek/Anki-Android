@@ -566,7 +566,8 @@ public class StudyOptionsFragment extends Fragment implements LoaderManager.Load
         } else {
             menu.findItem(R.id.action_undo).setVisible(true);
             Resources res = AnkiDroidApp.getAppResources();
-            menu.findItem(R.id.action_undo).setTitle(res.getString(R.string.studyoptions_congrats_undo, getCol().undoName(res)));
+            menu.findItem(R.id.action_undo).setTitle(
+                    Themes.getSpannableForegroundColor(res.getString(R.string.studyoptions_congrats_undo, getCol().undoName(res))));
         }
         super.onCreateOptionsMenu(menu, inflater);
     }
@@ -764,9 +765,11 @@ public class StudyOptionsFragment extends Fragment implements LoaderManager.Load
                     mTextDeckName.setText(nameBuilder.toString());
                     // Also set deck name in activity title in action bar if not tablet mode
                     if (!mFragmented) {
-                        getActivity().setTitle(getResources().getString(R.string.studyoptions_title));
+                        getActivity().setTitle(
+                                Themes.getSpannableForegroundColor(getResources().getString(R.string.studyoptions_title)));
                         List<String> parts = Arrays.asList(fullName.split("::"));
-                        AnkiDroidApp.getCompat().setSubtitle(getActivity(), parts.get(parts.size() - 1));
+
+                        AnkiDroidApp.getCompat().setSubtitle(getActivity(), parts.get(parts.size() - 1), Themes.getForegroundColor());
                     }
                 } catch (JSONException e) {
                     throw new RuntimeException(e);

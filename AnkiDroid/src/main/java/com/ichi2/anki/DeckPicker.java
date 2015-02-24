@@ -401,7 +401,8 @@ public class DeckPicker extends NavigationDrawerActivity implements OnShowcaseEv
         Themes.applyTheme(this);
         super.onCreate(savedInstanceState);
 
-        setTitle(getResources().getString(R.string.app_name));
+//        setTitle("TEST");
+        setTitle(getResources().getString(R.string.app_name));  // appears to have no effect
         setTitleColor(Color.WHITE);
 
         SharedPreferences preferences = restorePreferences();
@@ -1841,7 +1842,8 @@ public class DeckPicker extends NavigationDrawerActivity implements OnShowcaseEv
                 time = res.getQuantityString(R.plurals.deckpicker_title_minutes, eta, eta);
             }
             AnkiDroidApp.getCompat().setSubtitle(this,
-                    res.getQuantityString(R.plurals.deckpicker_title, due, due, time));
+                    res.getQuantityString(R.plurals.deckpicker_title, due, due, time)
+                    , Themes.getForegroundColor());
         }
 
         // update widget

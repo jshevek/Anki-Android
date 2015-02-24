@@ -147,11 +147,11 @@ public class CompatV7 implements Compat {
         ActionBar actionBar = actionBarActivity.getSupportActionBar();
         if (actionBar != null) {
             if (inverted) {
-                textColor = R.color.white;  // Improve inversion
+                textColor = activity.getResources().getColor(R.color.white);  // Improve inversion
             } else {
                 textColor = textColorParam;
             }
-            CharacterStyle span = new ForegroundColorSpan(activity.getResources().getColor(textColor));
+            CharacterStyle span = new ForegroundColorSpan(textColor);
             actionBar.setSubtitle(title);
             SpannableStringBuilder ssb = new SpannableStringBuilder(title);
             ssb.setSpan(span, 0, ssb.length(), 0);

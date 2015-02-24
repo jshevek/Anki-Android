@@ -27,6 +27,7 @@ import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.text.Spannable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,6 +49,8 @@ public class NavigationDrawerActivity extends AnkiActivity {
     
     /** Navigation Drawer */
     protected CharSequence mTitle;
+//    protected int mTitleColor;
+//    protected Spannable mTitleSpannable;  // TODO JS Simplify - redundant. Everything inside Themes.java ?
     protected Boolean mFragmented = false;
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
@@ -74,6 +77,7 @@ public class NavigationDrawerActivity extends AnkiActivity {
         mDrawerLayout = (DrawerLayout) mainView.findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) mainView.findViewById(R.id.left_drawer);
         mTitle = getTitle();
+//        mTitleColor = Themes.getForegroundColor();  // Later, maybe getTitleTextColor
         mNavigationTitles = getResources().getStringArray(R.array.navigation_titles);
         mNavigationImages = Themes.getNavigationImages(getResources());
 //        getResources().obtainTypedArray(R.array.drawer_images);
@@ -97,12 +101,14 @@ public class NavigationDrawerActivity extends AnkiActivity {
                 R.string.drawer_close  /* "close drawer" description for accessibility */
                 ) {
             public void onDrawerClosed(View view) {
-                getSupportActionBar().setTitle(mTitle);
+
+                getSupportActionBar().setTitle(Themes.getSpannableForegroundColor(mTitle));
                 supportInvalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
 
             public void onDrawerOpened(View drawerView) {
-                getSupportActionBar().setTitle(getResources().getString(R.string.app_name));
+                getSupportActionBar().setTitle(Themes.getSpannableForegroundColor(getResources().getString(R.string.app_name)));
+//                getSupportActionBar().setTitle(getResources().getString(R.string.app_name));
                 supportInvalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
         };
@@ -184,7 +190,7 @@ public class NavigationDrawerActivity extends AnkiActivity {
     @Override
     public void setTitle(CharSequence title) {
         mTitle = title;
-        getSupportActionBar().setTitle(mTitle);
+        getSupportActionBar().setTitle(Themes.getSpannableForegroundColor(mTitle));
 
     }
 
