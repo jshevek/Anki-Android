@@ -1180,23 +1180,10 @@ public class Themes {
     }
 
     public static TypedArray getNavigationImages(Resources resources) {
-        TypedArray images = resources.obtainTypedArray(R.array.drawer_images);
-        // quick hack - just invert the regular images here. Later, create new images and import properly
-        float[] colorMatrix = {
-                -1.0f, 0, 0, 0, 255,    // red
-                0, -1.0f, 0, 0, 255,    // green
-                0, 0, -1.0f, 0, 255,    // blue
-                0, 0, 0, 1.0f, 0        // alpha
-        };
-        ColorFilter cf = new ColorMatrixColorFilter(new ColorMatrix(colorMatrix));
-
         if (mCurrentTheme != THEME_DEEPBLACK) {
-            return images;
+            return resources.obtainTypedArray(R.array.drawer_images);
         }else {
-            for (int i = 0; i < images.length(); i++) {
-                images[i]
-            }
+            return resources.obtainTypedArray(R.array.drawer_images_deepblack);
         }
-
     }
 }
