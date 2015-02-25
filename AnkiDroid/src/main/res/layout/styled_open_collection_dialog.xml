@@ -27,7 +27,7 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:background="@drawable/deckpicker_load_bg"
+        android:background="?attr/deckpicker_load_bg"
         android:gravity="center"
         android:orientation="vertical" >
 

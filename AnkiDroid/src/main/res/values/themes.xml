@@ -9,6 +9,7 @@
 
     <!-- Blue Theme -->
     <style name="Theme_Blue" parent="@style/Theme_Base_Custom_Light">
+
         <item name="android:buttonStyle">@style/Blue.Button</item>
         <item name="android:buttonStyleSmall">@style/Blue.Button.Small</item>
         <item name="android:buttonStyleToggle">@style/Blue.Button.Toggle</item>
@@ -55,6 +56,14 @@
 
     <!-- Deep black Theme -->
     <style name="Theme_DeepBlack" parent="@style/Theme_Base_Custom_Light">
+        <item name="ic_menu_add">@drawable/ic_menu_add_deepblack  </item>
+        <item name="ic_start">@drawable/ic_start  </item>
+        <item name="ic_dialog_info">@drawable/ic_dialog_info_deepblack  </item>
+        <item name="white_list_selector_background">@drawable/white_list_selector_background </item>
+        <item name="ic_media">@drawable/ic_media_deepblack </item>
+        <item name="deckpicker_load_bg">@drawable/deckpicker_load_bg</item>
+        <item name="ic_lookup">@drawable/ic_lookup_deepblack </item>
+
         <item name="android:buttonStyle">@style/DeepBlack.Button</item>
         <item name="android:buttonStyleSmall">@style/DeepBlack.Button.Small</item>
         <item name="android:buttonStyleToggle">@style/DeepBlack.Button.Toggle</item>
@@ -82,6 +91,14 @@
 
     <!-- White Theme -->
     <style name="Theme_White" parent="@style/Theme_Base_Custom_Light">
+        <item name="ic_menu_add">@drawable/ic_menu_add  </item>
+        <item name="ic_start">@drawable/ic_start  </item>
+        <item name="ic_dialog_info">@drawable/ic_dialog_info  </item>
+        <item name="white_list_selector_background">@drawable/white_list_selector_background </item>
+        <item name="ic_media">@drawable/ic_media </item>
+        <item name="deckpicker_load_bg">@drawable/deckpicker_load_bg </item>
+        <item name="ic_lookup">@drawable/ic_lookup </item>
+
         <item name="android:buttonStyle">@style/White.Button</item>
         <item name="android:buttonStyleSmall">@style/White.Button.Small</item>
         <item name="android:buttonStyleToggle">@style/White.Button.Toggle</item>

@@ -141,7 +141,7 @@
                 android:layout_gravity="right"
                 android:clickable="true"
                 android:padding="5dip"
-                android:src="@drawable/ic_lookup"
+                android:src="?attr/ic_lookup"
                 android:visibility="gone"
                 android:contentDescription="@string/lookup_button_content" />
 
