@@ -39,6 +39,7 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 
 import android.util.Pair;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -56,6 +57,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ichi2.anim.ActivityTransitionAnimation;
 import com.ichi2.anki.dialogs.ConfirmationDialog;
@@ -1790,4 +1792,24 @@ public class NoteEditor extends AnkiActivity {
             // Do Nothing
         }
     }
+
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)){
+//            Log.e("JS", "keydown");
+            Themes.forceIterateTheme();  // Hack for dev/testing only.
+            Toast.makeText(this, "Theme: " + Themes.getThemeName(), Toast.LENGTH_SHORT).show();
+            Themes.applyTheme(this, Themes.getTheme());
+            Themes.loadTheme();
+            // Are all of these calls  - especially setContentStyle necessary to implement the theme?  How to simplify?
+//            Themes.setContentStyle(getCurrentFocus().getRootView(), Themes.CALLER_CARD_EDITOR);
+            // ^^ Cautiously removed to prevent crashes, haven't tested yet
+            finish();
+            startActivity(getIntent());
+            return true;
+        }
+        return super.onKeyUp(keyCode, event);
+    }
+
 }

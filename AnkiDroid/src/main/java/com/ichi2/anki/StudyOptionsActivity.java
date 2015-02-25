@@ -24,10 +24,13 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
+
 import com.ichi2.anim.ActivityTransitionAnimation;
 import com.ichi2.anki.StudyOptionsFragment.StudyOptionsListener;
 import com.ichi2.anki.receiver.SdCardReceiver;
@@ -157,6 +160,19 @@ public class StudyOptionsActivity extends NavigationDrawerActivity implements St
             closeStudyOptions();
             return true;
         }
+        if ((keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)){
+//            Log.e("JS", "keydown");
+            Toast.makeText(this, "Theme: " + Themes.getThemeName(), Toast.LENGTH_SHORT).show();
+            Themes.forceIterateTheme();  // Hack for dev/testing only.
+            Themes.applyTheme(this, Themes.getTheme());
+            Themes.loadTheme();
+            // Are all of these calls  - especially setContentStyle necessary to implement the theme?  How to simplify?
+            Themes.setContentStyle(getCurrentFocus().getRootView(), Themes.CALLER_STUDYOPTIONS);
+            finish();
+            startActivity(getIntent());
+            return true;
+        }
+
         return super.onKeyDown(keyCode, event);
     }
 
@@ -223,4 +239,9 @@ public class StudyOptionsActivity extends NavigationDrawerActivity implements St
     public void createFilteredDeck(JSONArray delays, Object[] terms, Boolean resched) {
         getCurrentFragment().createFilteredDeck(delays, terms, resched);
     }
+
+
+
+
+//
 }

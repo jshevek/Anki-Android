@@ -52,6 +52,7 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ichi2.anim.ActivityTransitionAnimation;
 import com.ichi2.anki.dialogs.TagsDialog;
@@ -436,6 +437,19 @@ public class CardBrowser extends NavigationDrawerActivity implements ActionBar.O
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
             Timber.i("CardBrowser:: CardBrowser - onBackPressed()");
             closeCardBrowser(Activity.RESULT_OK);
+            return true;
+        }
+
+        if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN){
+//            Log.e("JS", "keydown");
+            Themes.forceIterateTheme();  // Hack for dev/testing only.
+            Toast.makeText(this, "Theme: " + Themes.getThemeName(), Toast.LENGTH_SHORT).show();
+            Themes.applyTheme(this, Themes.getTheme());
+            Themes.loadTheme();
+            // Are all of these calls  - especially setContentStyle necessary to implement the theme?  How to simplify?
+            Themes.setContentStyle(getCurrentFocus().getRootView(), Themes.CALLER_CARDBROWSER);
+            finish();
+            startActivity(getIntent());
             return true;
         }
 

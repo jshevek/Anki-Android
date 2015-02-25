@@ -75,6 +75,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ichi2.anim.ActivityTransitionAnimation;
 import com.ichi2.anim.ViewAnimation;
@@ -1085,6 +1086,19 @@ public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity {
 	                return true;
 	            }
 	        }
+        }
+
+        if ((keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)){
+//            Log.e("JS", "keydown");
+            Themes.forceIterateTheme();  // Hack for dev/testing only.
+            Toast.makeText(this, "Theme: " + Themes.getThemeName(), Toast.LENGTH_SHORT).show();
+            Themes.applyTheme(this, Themes.getTheme());
+            Themes.loadTheme();
+            // Are all of these calls  - especially setContentStyle necessary to implement the theme?  How to simplify?
+            Themes.setContentStyle(getCurrentFocus().getRootView(), Themes.CALLER_REVIEWER);
+            finish();
+            startActivity(getIntent());
+            return true;
         }
         return super.onKeyUp(keyCode, event);
     }
