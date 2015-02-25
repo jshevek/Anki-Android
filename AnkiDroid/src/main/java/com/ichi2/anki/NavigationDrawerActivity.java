@@ -46,10 +46,10 @@ import timber.log.Timber;
 
 
 public class NavigationDrawerActivity extends AnkiActivity {
-    
+
     /** Navigation Drawer */
     protected CharSequence mTitle;
-//    protected int mTitleColor;
+    //    protected int mTitleColor;
 //    protected Spannable mTitleSpannable;  // TODO JS Simplify - redundant. Everything inside Themes.java ?
     protected Boolean mFragmented = false;
     private DrawerLayout mDrawerLayout;
@@ -69,8 +69,8 @@ public class NavigationDrawerActivity extends AnkiActivity {
     // Intent request codes
     public static final int REQUEST_PREFERENCES_UPDATE = 100;
     public static final int REQUEST_BROWSE_CARDS = 101;
-    
-    
+
+
     // navigation drawer stuff
     protected void initNavigationDrawer(View mainView){
         // Create inherited navigation drawer layout here so that it can be used by parent class
@@ -90,7 +90,7 @@ public class NavigationDrawerActivity extends AnkiActivity {
         // enable ActionBar app icon to behave as action to toggle nav drawer
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        
+
         // ActionBarDrawerToggle ties together the the proper interactions
         // between the sliding drawer and the action bar app icon
         mDrawerToggle = new ActionBarDrawerToggle(
@@ -99,22 +99,28 @@ public class NavigationDrawerActivity extends AnkiActivity {
                 R.drawable.ic_drawer,  /* nav drawer image to replace 'Up' caret */
                 R.string.drawer_open,  /* "open drawer" description for accessibility */
                 R.string.drawer_close  /* "close drawer" description for accessibility */
-                ) {
+        ) {
             public void onDrawerClosed(View view) {
+//                Themes.initTheme();  // tmp hack js
 
                 getSupportActionBar().setTitle(Themes.getSpannableForegroundColor(mTitle));
+//                getSupportActionBar().setTitle(mTitle);
                 supportInvalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
 
             public void onDrawerOpened(View drawerView) {
+//                Themes.initTheme();// tmp hack js
                 getSupportActionBar().setTitle(Themes.getSpannableForegroundColor(getResources().getString(R.string.app_name)));
 //                getSupportActionBar().setTitle(getResources().getString(R.string.app_name));
                 supportInvalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
+        getSupportActionBar().setTitle(Themes.getSpannableForegroundColor(mTitle));
+
+
     }
-    
+
     /* The click listener for ListView in the navigation drawer */
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         @Override
@@ -144,12 +150,12 @@ public class NavigationDrawerActivity extends AnkiActivity {
                 if (!(this instanceof CardBrowser)) {
                     if (this instanceof DeckPicker && !mFragmented){
                         cardBrowser.putExtra("fromDeckpicker", true);
-                    }                    
+                    }
                     startActivityForResultWithAnimation(cardBrowser, REQUEST_BROWSE_CARDS, ActivityTransitionAnimation.LEFT);
                 }
                 break;
             case DRAWER_STATISTICS:
-            	boolean selectAllDecksButton = false;
+                boolean selectAllDecksButton = false;
                 if(!(this instanceof Statistics)) {
                     if ((this instanceof DeckPicker && !mFragmented)) {
                         selectAllDecksButton = true;
@@ -164,17 +170,17 @@ public class NavigationDrawerActivity extends AnkiActivity {
                 mOldColPath = AnkiDroidApp.getCurrentAnkiDroidDirectory();
                 startActivityForResultWithAnimation(new Intent(this, Preferences.class), REQUEST_PREFERENCES_UPDATE, ActivityTransitionAnimation.LEFT);
                 break;
-            
+
             case DRAWER_HELP:
                 Intent helpIntent = new Intent("android.intent.action.VIEW", Uri.parse(AnkiDroidApp.getManualUrl()));
                 startActivityWithoutAnimation(helpIntent);
                 break;
-                
+
             case DRAWER_FEEDBACK:
                 Intent feedbackIntent = new Intent("android.intent.action.VIEW", Uri.parse(AnkiDroidApp.getFeedbackUrl()));
                 startActivityWithoutAnimation(feedbackIntent);
                 break;
-            
+
             default:
                 break;
         }
@@ -191,6 +197,8 @@ public class NavigationDrawerActivity extends AnkiActivity {
     public void setTitle(CharSequence title) {
         mTitle = title;
         getSupportActionBar().setTitle(Themes.getSpannableForegroundColor(mTitle));
+        //  Switch between programmatic and xml based approach
+//        getSupportActionBar().setTitle(mTitle);
 
     }
 
@@ -212,11 +220,11 @@ public class NavigationDrawerActivity extends AnkiActivity {
         // Pass any configuration change to the drawer toggles
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
-    
-    
+
+
     /* Adapter which controls how to display the items in the navigation drawer */
     private class NavDrawerListAdapter extends BaseAdapter {
-        
+
         private Context context;
         private String[] navDrawerTitles;
         private TypedArray navDrawerImages;
@@ -233,7 +241,7 @@ public class NavigationDrawerActivity extends AnkiActivity {
         }
 
         @Override
-        public Object getItem(int position) {       
+        public Object getItem(int position) {
             return navDrawerTitles[position];
         }
 
@@ -271,23 +279,23 @@ public class NavigationDrawerActivity extends AnkiActivity {
     /* Members not related directly to navigation drawer */
 
     @Override
-    protected void onDestroy() {       
+    protected void onDestroy() {
         super.onDestroy();
         mNavigationImages.recycle();
     }
-    
+
     public DrawerLayout getDrawerLayout() {
         return mDrawerLayout;
     }
-    
+
     public ListView getDrawerList() {
         return mDrawerList;
     }
-    
+
     public ActionBarDrawerToggle getDrawerToggle() {
         return mDrawerToggle;
     }
-    
+
     /**
      * This function locks the navigation drawer closed in regards to swipes,
      * but continues to allowed it to be opened via it's indicator button. This
@@ -298,11 +306,11 @@ public class NavigationDrawerActivity extends AnkiActivity {
             mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
         }
     }
-    
+
     /**
      * This function allows swipes to open the navigation drawer. This
      * function in a noop if the drawer hasn't been initialized.
-     */    
+     */
     protected void enableDrawerSwipe() {
         if (mDrawerLayout != null) {
             mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);

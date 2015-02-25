@@ -184,7 +184,7 @@
         <item name="android:typeface">monospace</item>
         <item name="android:textSize">30sp</item>
     </style>
-    
+
     <style name="Theme.CrashReportDialog" parent="@android:style/Theme.Dialog" />
 
     <style name="White.Spinner">
@@ -228,6 +228,7 @@
     <style name="White.ActionBarStyle" parent="@style/Widget.AppCompat.Light.ActionBar.Solid">
         <item name="android:background">@color/actionbar_background</item>
         <item name="background">@color/actionbar_background</item>
+        <item name="android:textColor">?attr/actionBarTextColor</item>
     </style>
 
     <!-- Widget Elements -->
@@ -334,6 +335,7 @@
 
     <style name="DeepBlack.ActionBarStyle" parent="@style/Widget.AppCompat.Light.ActionBar.Solid">
         <item name="android:background">@color/deepblack_actionbar_background</item>
+        <item name="android:textColor">?attr/actionBarTextColor</item>
         <item name="background">@color/deepblack_actionbar_background</item>
     </style>
 

@@ -32,6 +32,7 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -1143,7 +1144,7 @@ public class Themes {
         return new int[]{foregroundColor, nextTimeRecommendedColor};
     }
 
-    public static int getDeckpickerListElementBackground(String text) {
+    public static int getDeckPickerListElementBackground(String text) {
 //        Log.e("JS", "getDeckPicker...");
         // There is surely a smarter, cleaner way to do all of this
         if (text.equals("top")) {
@@ -1152,6 +1153,8 @@ public class Themes {
                     return R.drawable.deepblack_deckpicker_top;
                 case THEME_WHITE:
                     return R.drawable.white_deckpicker_top;
+                case THEME_GREYBLACK:
+                    return R.drawable.deepblack_deckpicker_top;
                 default:
                     return R.drawable.white_deckpicker_top;
             }
@@ -1161,6 +1164,8 @@ public class Themes {
                 case THEME_DEEPBLACK:
                     return R.drawable.deepblack_deckpicker_bottom;
                 case THEME_WHITE:
+                    return R.drawable.white_deckpicker_bottom;
+                case THEME_GREYBLACK:
                     return R.drawable.white_deckpicker_bottom;
                 default:
                     return R.drawable.white_deckpicker_bottom;
@@ -1172,6 +1177,8 @@ public class Themes {
                     return R.drawable.deepblack_deckpicker_full;
                 case THEME_WHITE:
                     return R.drawable.white_deckpicker_full;
+                case THEME_GREYBLACK:
+                    return R.drawable.deepblack_deckpicker_full;
                 default:
                     return R.drawable.white_deckpicker_full;
             }
@@ -1181,6 +1188,8 @@ public class Themes {
                     return R.drawable.deepblack_deckpicker_center;
                 case THEME_WHITE:
                     return R.drawable.white_deckpicker_center;
+                case THEME_GREYBLACK:
+                    return R.drawable.deepblack_deckpicker_center;
                 default:
                     return R.drawable.white_deckpicker_center;
             }
@@ -1212,14 +1221,17 @@ public class Themes {
     // Code below this line reflects the necessary (can't be moved to xml)
     //   fields and methods to dynamically theme the app
 
-
     static int mDeckPickerDynamicTextColor;
     static int mDeckPickerNonDynamicTextColor;
 
     // this is 'loadTheme' rewritten piece by piece, filtering for xml-ifiable pieces
     public static void initTheme() {
-        int mDeckPickerDynamicTextColor = mContext.getResources().getColor(R.color.dyn_deck);
-        int mDeckPickerNonDynamicTextColor = mContext.getResources().getColor(R.color.non_dyn_deck);
+//        mDeckPickerDynamicTextColor = mContext.getResources().getColor(R.color.dyn_deck);
+//        mDeckPickerNonDynamicTextColor = mContext.getResources().getColor(R.color.non_dyn_deck);
+        mDeckPickerDynamicTextColor = getThemeColorAttribute(R.attr.dyn_deck);
+        mDeckPickerNonDynamicTextColor = getThemeColorAttribute(R.attr.non_dyn_deck);
+        mForegroundColor = getThemeColorAttribute(R.attr.foregroundColor);
+
     }
 
     // Make mDeckPickerNonDynamicTextColor the same as 'foreground' or 'generic text color' ?
@@ -1240,18 +1252,28 @@ public class Themes {
 
     // later make these getDeckPicker color methods rely on themes state data (or themes.xml ?)
     // rather than directly on the color definitions
+    // make this more efficient by initing the values, then grab ints vs looking up attrs?
     public static int getDeckPickerNewTextColor() {
-        return mContext.getResources().getColor(R.color.new_count);
+//        return mContext.getResources().getColor(R.color.new_count);
+        return getThemeColorAttribute(R.attr.newTextColor);
     }
 
     public static int getDeckPickerLearnTextColor() {
-        return mContext.getResources().getColor(R.color.learn_count);
+        return getThemeColorAttribute(R.attr.learnTextColor);
+//        return mContext.getResources().getColor(R.color.learn_count);
     }
 
     public static int getDeckPickerReviewTextColor() {
-        return mContext.getResources().getColor(R.color.review_count);
+        return getThemeColorAttribute(R.attr.reviewTextColor);
+//        return mContext.getResources().getColor(R.color.review_count);
     }
 
+    public static int getThemeColorAttribute(int attributeID) {
+        TypedValue typedValue = new TypedValue();
+        Resources.Theme theme = mContext.getTheme();
+        theme.resolveAttribute(attributeID, typedValue, true);
+        return typedValue.data;
+    }
 
     // This will replace setContentStyle, and may itself be replaced by proper use of xml
     public static void setDeckPickerContentStyle(View view) {

@@ -170,7 +170,7 @@ public class DeckPicker extends NavigationDrawerActivity implements OnShowcaseEv
     int mStatisticType;
 
     boolean mCompletionBarRestrictToActive = false; // set this to true in order to calculate completion bar only for
-                                                    // active cards
+    // active cards
     boolean mShowShowcaseView = false;
     // flag asking user to do a full sync which is used in upgrade path
     boolean mRecommendFullSync = false;
@@ -398,12 +398,13 @@ public class DeckPicker extends NavigationDrawerActivity implements OnShowcaseEv
             showOpeningCollectionDialog();
         }
 
-        Themes.applyTheme(this);
         super.onCreate(savedInstanceState);
 
+        Themes.applyTheme(this);
+        Themes.initTheme();
 //        setTitle("TEST");
         setTitle(getResources().getString(R.string.app_name));  // appears to have no effect
-        setTitleColor(Color.WHITE);
+//        setTitleColor(Themes.getForegroundColor());  // Let xml/theme do this
 
         SharedPreferences preferences = restorePreferences();
 
@@ -436,11 +437,14 @@ public class DeckPicker extends NavigationDrawerActivity implements OnShowcaseEv
 
         mDeckListAdapter.setViewBinder(new SimpleAdapter.ViewBinder() {
             @Override
+            // text will be top, bot, ful, cen; or d0, d1; or '0' ; or other?
             public boolean setViewValue(View view, Object data, String text) {
 //                Log.e("JS", "setViewBinder");
 //                Themes.loadTheme();  // Compensate for improper setup, remove this line when fixed
+//                Themes.initTheme();  // Hack - later simply ensure the them is init'ed before coming here.
                 if (view.getId() == R.id.deckpicker_deck) {
-                    view.setBackgroundResource(Themes.getDeckpickerListElementBackground(text));
+                    // Can this be moved to xml?  js
+                    view.setBackgroundResource(Themes.getDeckPickerListElementBackground(text));
                     return true;
                 } else if (view.getId() == R.id.DeckPickerName) {
                     // d0 and d1 signify non-dynamic and dynamic decks
@@ -817,8 +821,8 @@ public class DeckPicker extends NavigationDrawerActivity implements OnShowcaseEv
             Themes.forceIterateTheme();  // Hack for dev/testing only.
             Themes.applyTheme(this, Themes.getTheme());
 //            Themes.loadTheme();
+            Themes.initTheme();
 //            Themes.setContentStyle(getCurrentFocus().getRootView(), Themes.CALLER_DECKPICKER);
-            Themes.setDeckPickerContentStyle(getCurrentFocus().getRootView());
             Log.e("JS", "keydown");
             Toast.makeText(this, "Theme: "+Themes.getThemeName(), Toast.LENGTH_SHORT).show();
             finish();
@@ -869,7 +873,7 @@ public class DeckPicker extends NavigationDrawerActivity implements OnShowcaseEv
                 Message handlerMessage = Message.obtain();
                 handlerMessage.what = DialogHandler.MSG_SHOW_FORCE_FULL_SYNC_DIALOG;
                 Bundle handlerMessageData = new Bundle();
-                handlerMessageData.putString("message", res.getString(R.string.full_sync_confirmation_upgrade) + 
+                handlerMessageData.putString("message", res.getString(R.string.full_sync_confirmation_upgrade) +
                         "\n\n" + res.getString(R.string.full_sync_confirmation));
                 handlerMessage.setData(handlerMessageData);
                 getDialogHandler().sendMessage(handlerMessage);
@@ -1072,7 +1076,7 @@ public class DeckPicker extends NavigationDrawerActivity implements OnShowcaseEv
         showAsyncDialogFragment(newFragment);
     }
 
-    /** 
+    /**
      *  Show log message after sync, using "Sync Error" as the dialog title, and reload activity
      * @param message
      */
@@ -1081,7 +1085,7 @@ public class DeckPicker extends NavigationDrawerActivity implements OnShowcaseEv
         showSyncLogDialog(message, true);
     }
 
-    /** 
+    /**
      *  Show log message after sync, and reload activity
      * @param message
      * @param error Show "Sync Error" as dialog title if this flag is set, otherwise use no title
@@ -1310,7 +1314,7 @@ public class DeckPicker extends NavigationDrawerActivity implements OnShowcaseEv
      * The mother of all syncing attempts. This might be called from sync() as first attempt to sync a collection OR
      * from the mSyncConflictResolutionListener if the first attempt determines that a full-sync is required. In the
      * second case, we have passed the mediaUsn that was obtained during the first attempt.
-     * 
+     *
      * @param syncConflictResolution Either "upload" or "download", depending on the user's choice.
      * @param syncMediaUsn The media Usn, as determined during the prior sync() attempt that determined that full
      *            syncing was required.
@@ -1721,7 +1725,7 @@ public class DeckPicker extends NavigationDrawerActivity implements OnShowcaseEv
 
     /**
      * Programmatically click on a deck in the deck list.
-     * 
+     *
      * @param did The deck ID of the deck to select.
      */
     private void selectDeck(long did) {
@@ -1761,7 +1765,7 @@ public class DeckPicker extends NavigationDrawerActivity implements OnShowcaseEv
      * <p>
      * Note that this method does not change the currently selected deck in the collection, only the highlighted deck in
      * the deck list. To select a deck, see {@link #selectDeck(long)}.
-     * 
+     *
      * @param did The deck ID of the deck to select.
      */
     public void setSelectedDeck(long did) {

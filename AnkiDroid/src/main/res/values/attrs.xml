@@ -17,35 +17,40 @@
 
 <resources>
 
-	<attr name="min" format="integer" />
-	<attr name="max" format="integer" />
-	<attr name="allowEmpty" format="boolean" />
+    <attr name="min" format="integer" />
+    <attr name="max" format="integer" />
+    <attr name="allowEmpty" format="boolean" />
 
     <!-- The following items are all themable.  Refer to them in any layout via ?attr/, and include the appropriate tag in the appropriate theme within themes.xml -->
-	<declare-styleable name="anki_theme_items">
+    <declare-styleable name="anki_theme_items">
         <!-- Misc menu buttons, and similar -->
-		<attr name="ic_menu_add" format="string" />
-		<attr name="ic_start" format="string" />
-		<attr name="ic_dialog_info" format="string" />
-		<attr name="ic_media" format="string" />
+        <attr name="ic_menu_add" format="string" />
+        <attr name="ic_start" format="string" />
+        <attr name="ic_dialog_info" format="string" />
+        <attr name="ic_media" format="string" />
         <attr name="ic_lookup" format="string" />
+
+        <attr name="actionBarTextColor" format="color" />
 
         <attr name="deckpicker_load_bg" format="string" />
         <attr name="white_list_selector_background" format="string" />
 
         <!-- Generic 'foreground color', often used for textfield text color -->
-		<attr name="foregroundColor" format="color" />
+        <attr name="foregroundColor" format="color" />
 
         <!-- The base background. ?Redundant with android:background? -->
-		<attr name="backgroundColor" format="color" />
+        <attr name="backgroundColor" format="color" />
         <!-- The 'card' background, or background color for any elements resting on the base background -->
         <attr name="backgroundElevatedColor" format="color" />
 
+        <attr name="dyn_deck" format="color" />
+        <attr name="non_dyn_deck" format="color" />
+
         <!-- Three colors used for the counts of remaining learn, review, and new cards.  -->
         <!-- Much of this is happening programmically, their future use as a themeable component is more complicated -->
-		<attr name="learnTextColor" format="color" />
-		<attr name="reviewTextColor" format="color" />
-		<attr name="newTextColor" format="color" />
+        <attr name="learnTextColor" format="color" />
+        <attr name="reviewTextColor" format="color" />
+        <attr name="newTextColor" format="color" />
 
         <attr name="flashCardButtonBackground" format="color"  />
         <!--<attr name="deckPickerItemSelectorBackground" format="reference"  />-->
@@ -58,8 +63,8 @@
 
     </declare-styleable>
 
-	<declare-styleable name="SeekBarPreference">
-		<attr name="interval" format="integer" />
-	</declare-styleable>
+    <declare-styleable name="SeekBarPreference">
+        <attr name="interval" format="integer" />
+    </declare-styleable>
 
 </resources>

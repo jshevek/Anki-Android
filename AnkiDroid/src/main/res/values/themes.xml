@@ -16,6 +16,7 @@
     <!-- Eventually may return to a 'light base' and 'dark base' approach, but not to inherit the qualities from Theme.AppCompat - rather to facilitate re-use of light-friendly icons
     dark-friendly icons  -->
     <style name="Theme_White" parent="@style/Theme_Base_Custom_Light">
+        <!-- Image files, icons -->
         <item name="ic_menu_add">@drawable/ic_menu_add</item>
         <item name="ic_start">@drawable/ic_start</item>
         <item name="ic_dialog_info">@drawable/ic_dialog_info</item>
@@ -23,21 +24,31 @@
         <item name="ic_media">@drawable/ic_media</item>
         <item name="deckpicker_load_bg">@drawable/deckpicker_load_bg</item>
         <item name="ic_lookup">@drawable/ic_lookup</item>
-        <item name="foregroundColor">#FFFFFF</item>
 
+        <!-- colors throughout the app -->
+        <item name="foregroundColor">#000000</item>
+        <item name="backgroundElevatedColor">#dddddd</item>
+        <item name="backgroundColor">#eeeeee</item>
+        <item name="actionBarTextColor">#ff4488</item>
+
+        <!--  how to setup action bar colors using attrs ?
+        <item name="android:actionMenuTextColor">#88FF33</item>
+-->
+
+        <!-- Dynamic text colors -->
         <item name="learnTextColor">#ff0000</item>
         <item name="reviewTextColor">#00ff00</item>
         <item name="newTextColor">#0000ff</item>
-        <item name="backgroundElevatedColor">#dddddd</item>
-        <item name="backgroundColor">#eeeeee</item>
 
+        <item name="dyn_deck">@color/dyn_deck</item>
+        <item name="non_dyn_deck">@color/non_dyn_deck</item>
 
 
         <!-- Taken from bottom_button.xml and flashcard.xml - transparent -->
         <item name="flashCardButtonBackground">#00000000</item>
 
 
-        <!-- taken out of Themes.java  -->
+        <!-- taken out of Themes.java, deckpicker backgrounds?  -->
         <item name="deckPickerListSelector">@drawable/white_deckpicker_list_selector</item>
 
 
@@ -67,7 +78,7 @@
 
 
     <style name="Theme_Anki_Base" parent="@style/Theme_White">
-        </style>
+    </style>
 
 
 
@@ -79,6 +90,9 @@
         <item name="foregroundColor">#1122aa</item>
         <item name="backgroundColor">#080844</item>
         <item name="backgroundElevatedColor">#111188</item>
+
+        <item name="dyn_deck">@color/dyn_deck</item>
+        <item name="non_dyn_deck">#00ffff</item>
 
 
         <item name="android:buttonStyle">@style/Blue.Button</item>
@@ -128,6 +142,7 @@
         <item name="android:spinnerDropDownItemStyle">@style/Blue.Widget.DropDownItem.Spinner</item>
     </style>
 
+    <!--===================================================================================-->
     <!-- Deep black Theme -->
     <style name="Theme_DeepBlack" parent="@style/Theme_Anki_Base">
         <item name="ic_menu_add">@drawable/ic_menu_add_deepblack</item>
@@ -138,9 +153,15 @@
         <item name="deckpicker_load_bg">@drawable/deckpicker_load_bg</item>
         <item name="ic_lookup">@drawable/ic_lookup_deepblack</item>
 
-        <item name="foregroundColor">#888888</item>
+        <item name="foregroundColor">#DDDDDD</item>
         <item name="backgroundColor">#111111</item>
         <item name="backgroundElevatedColor">#000000</item>
+        <item name="dyn_deck">@color/dyn_deck</item>
+        <item name="non_dyn_deck">#ffffff</item>
+
+        <item name="learnTextColor">#ff4444</item>
+        <item name="reviewTextColor">#44ff44</item>
+        <item name="newTextColor">#ff99FF</item>
 
 
         <item name="deckPickerListSelector">@drawable/deepblack_deckpicker_list_selector</item>
@@ -172,10 +193,15 @@
 
     <!-- Grey black Theme -->
     <style name="Theme_GreyBlack" parent="@style/Theme_DeepBlack">
-    <item name="backgroundColor">#333333</item>
-    <item name="backgroundElevatedColor">#080808</item>
+        <item name="backgroundColor">#333333</item>
+        <item name="backgroundElevatedColor">#080808</item>
+        <item name="foregroundColor">#999999</item>
+
+        <item name="dyn_deck">@color/dyn_deck</item>
+        <item name="non_dyn_deck">#777777</item>
+
         <item name="deckPickerListSelector">@drawable/deepblack_deckpicker_list_selector</item>
-</style>
+    </style>
 
     <style name="Theme_White_Statistics" parent="@style/Theme_White">
         <item name="android:radioButtonStyle">@android:style/Widget.CompoundButton.RadioButton</item>
