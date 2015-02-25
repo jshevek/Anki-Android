@@ -47,6 +47,8 @@
 		<attr name="reviewTextColor" format="color" />
 		<attr name="newTextColor" format="color" />
 
+        <attr name="flashCardButtonBackground" format="color"  />
+
         <!-- for compatibility with old blue theme.  optional ?
         <attr name="studyOptionsBackground" format="reference" />
 -->

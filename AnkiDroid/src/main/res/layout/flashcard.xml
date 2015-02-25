@@ -39,6 +39,7 @@
             android:layout_marginLeft="9dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="4dp"
+            android:background="?attr/backgroundElevatedColor"
             android:gravity="center_vertical" >
 
             <TextView
@@ -46,7 +47,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
-                android:background="?attr/background"
                 android:textColor="?attr/newTextColor"
                 android:textSize="14sp" />
 
@@ -196,7 +196,7 @@
                         style="?android:attr/buttonStyleSmall"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
-                        android:background="@color/transparent"
+                        android:background="?attr/flashCardButtonBackground"
                         android:clickable="false"
                         android:gravity="center"
                         android:lines="1"
@@ -214,7 +214,7 @@
                         <Button
                             android:layout_width="0dip"
                             android:layout_height="wrap_content"
-                            android:background="@color/transparent"
+                            android:background="?attr/flashCardButtonBackground"
                             android:lines="1"
                             android:textSize="14sp" />
                     </LinearLayout>

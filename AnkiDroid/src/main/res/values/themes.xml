@@ -11,8 +11,71 @@
 
     <style name="Theme_Base_Dialog" parent="@android:style/Theme.Dialog" />
 
+
+    <!-- White Theme has been converted into the 'base theme' for the custom themes during development, so that I don't have to add everything to all themes -->
+    <!-- Eventually may return to a 'light base' and 'dark base' approach, but not to inherit the qualities from Theme.AppCompat - rather to facilitate re-use of light-friendly icons
+    dark-friendly icons  -->
+    <style name="Theme_White" parent="@style/Theme_Base_Custom_Light">
+        <item name="ic_menu_add">@drawable/ic_menu_add</item>
+        <item name="ic_start">@drawable/ic_start</item>
+        <item name="ic_dialog_info">@drawable/ic_dialog_info</item>
+        <item name="white_list_selector_background">@drawable/white_list_selector_background</item>
+        <item name="ic_media">@drawable/ic_media</item>
+        <item name="deckpicker_load_bg">@drawable/deckpicker_load_bg</item>
+        <item name="ic_lookup">@drawable/ic_lookup</item>
+        <item name="foregroundColor">#FFFFFF</item>
+
+        <item name="learnTextColor">#ff0000</item>
+        <item name="reviewTextColor">#00ff00</item>
+        <item name="newTextColor">#0000ff</item>
+        <item name="backgroundElevatedColor">#dddddd</item>
+        <item name="backgroundColor">#eeeeee</item>
+
+
+
+        <!-- Taken from bottom_button.xml and flashcard.xml - transparent -->
+        <item name="flashCardButtonBackground">#00000000</item>
+
+
+        <item name="android:buttonStyle">@style/White.Button</item>
+        <item name="android:buttonStyleSmall">@style/White.Button.Small</item>
+        <item name="android:buttonStyleToggle">@style/White.Button.Toggle</item>
+        <item name="android:checkboxStyle">@style/White.CompoundButton.CheckBox</item>
+        <item name="android:colorForeground">#0000</item>
+        <item name="android:colorBackground">@color/white_background</item>
+        <item name="android:editTextStyle">@style/White.Edittext</item>
+        <item name="android:radioButtonStyle">@style/White.CompoundButton.RadioButton</item>
+
+        <!-- Action bar styles -->
+        <item name="actionBarStyle">@style/White.ActionBarStyle</item>
+        <item name="android:actionBarStyle" tools:targetApi="11">@style/White.ActionBarStyle</item>
+
+        <!-- Dialog styles -->
+        <item name="android:alertDialogStyle">@style/White.AlertDialog</item>
+        <item name="android:listChoiceIndicatorSingle">@drawable/blue_btn_radio</item>
+        <item name="android:listChoiceIndicatorMultiple">@drawable/blue_btn_check</item>
+        <item name="android:listViewStyle">@style/White.Widget.ListView</item>
+        <item name="android:dropDownListViewStyle">@style/White.Widget.ListView.DropDown</item>
+        <item name="android:listDivider">@drawable/white_listdivider</item>
+        <item name="android:listPreferredItemHeight">56dip</item>
+        <item name="android:spinnerDropDownItemStyle">@style/White.Widget.DropDownItem.Spinner</item>
+    </style>
+
+
+    <style name="Theme_Anki_Base" parent="@style/Theme_White">
+        </style>
+
+
+
+
+
     <!-- Blue Theme -->
-    <style name="Theme_Blue" parent="@style/Theme_Base_Custom_Light">
+    <style name="Theme_Blue" parent="@style/Theme_Anki_Base">
+
+        <item name="foregroundColor">#1122aa</item>
+        <item name="backgroundColor">#080844</item>
+        <item name="backgroundElevatedColor">#111188</item>
+
 
         <item name="android:buttonStyle">@style/Blue.Button</item>
         <item name="android:buttonStyleSmall">@style/Blue.Button.Small</item>
@@ -36,7 +99,7 @@
     </style>
 
     <!-- Flat Theme -->
-    <style name="Theme_Flat" parent="@style/Theme_Base_Custom_Light">
+    <style name="Theme_Flat" parent="@style/Theme_Anki_Base">
         <item name="foregroundColor">#222222</item>
 
 
@@ -62,7 +125,7 @@
     </style>
 
     <!-- Deep black Theme -->
-    <style name="Theme_DeepBlack" parent="@style/Theme_Base_Custom_Light">
+    <style name="Theme_DeepBlack" parent="@style/Theme_Anki_Base">
         <item name="ic_menu_add">@drawable/ic_menu_add_deepblack</item>
         <item name="ic_start">@drawable/ic_start</item>
         <item name="ic_dialog_info">@drawable/ic_dialog_info_deepblack</item>
@@ -70,8 +133,8 @@
         <item name="ic_media">@drawable/ic_media_deepblack</item>
         <item name="deckpicker_load_bg">@drawable/deckpicker_load_bg</item>
         <item name="ic_lookup">@drawable/ic_lookup_deepblack</item>
-        <item name="foregroundColor">#888888</item>
 
+        <item name="foregroundColor">#888888</item>
         <item name="backgroundColor">#111111</item>
         <item name="backgroundElevatedColor">#000000</item>
 
@@ -100,48 +163,11 @@
         <item name="android:spinnerDropDownItemStyle">@style/DeepBlack.Widget.DropDownItem.Spinner</item>
     </style>
 
-
-    <!-- White Theme -->
-    <style name="Theme_White" parent="@style/Theme_Base_Custom_Light">
-        <item name="ic_menu_add">@drawable/ic_menu_add</item>
-        <item name="ic_start">@drawable/ic_start</item>
-        <item name="ic_dialog_info">@drawable/ic_dialog_info</item>
-        <item name="white_list_selector_background">@drawable/white_list_selector_background</item>
-        <item name="ic_media">@drawable/ic_media</item>
-        <item name="deckpicker_load_bg">@drawable/deckpicker_load_bg</item>
-        <item name="ic_lookup">@drawable/ic_lookup</item>
-        <item name="foregroundColor">#FFFFFF</item>
-
-        <item name="learnTextColor">#ff0000</item>
-        <item name="reviewTextColor">#00ff00</item>
-        <item name="newTextColor">#0000ff</item>
-
-
-
-
-        <item name="android:buttonStyle">@style/White.Button</item>
-        <item name="android:buttonStyleSmall">@style/White.Button.Small</item>
-        <item name="android:buttonStyleToggle">@style/White.Button.Toggle</item>
-        <item name="android:checkboxStyle">@style/White.CompoundButton.CheckBox</item>
-        <item name="android:colorForeground">#0000</item>
-        <item name="android:colorBackground">@color/white_background</item>
-        <item name="android:editTextStyle">@style/White.Edittext</item>
-        <item name="android:radioButtonStyle">@style/White.CompoundButton.RadioButton</item>
-
-        <!-- Action bar styles -->
-        <item name="actionBarStyle">@style/White.ActionBarStyle</item>
-        <item name="android:actionBarStyle" tools:targetApi="11">@style/White.ActionBarStyle</item>
-
-        <!-- Dialog styles -->
-        <item name="android:alertDialogStyle">@style/White.AlertDialog</item>
-        <item name="android:listChoiceIndicatorSingle">@drawable/blue_btn_radio</item>
-        <item name="android:listChoiceIndicatorMultiple">@drawable/blue_btn_check</item>
-        <item name="android:listViewStyle">@style/White.Widget.ListView</item>
-        <item name="android:dropDownListViewStyle">@style/White.Widget.ListView.DropDown</item>
-        <item name="android:listDivider">@drawable/white_listdivider</item>
-        <item name="android:listPreferredItemHeight">56dip</item>
-        <item name="android:spinnerDropDownItemStyle">@style/White.Widget.DropDownItem.Spinner</item>
-    </style>
+    <!-- Grey black Theme -->
+    <style name="Theme_GreyBlack" parent="@style/Theme_DeepBlack">
+    <item name="backgroundColor">#333333</item>
+    <item name="backgroundElevatedColor">#080808</item>
+</style>
 
     <style name="Theme_White_Statistics" parent="@style/Theme_White">
         <item name="android:radioButtonStyle">@android:style/Widget.CompoundButton.RadioButton</item>

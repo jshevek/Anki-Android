@@ -52,13 +52,14 @@ import timber.log.Timber;
 
 public class Themes {
 
-    public final static String themeNames[] = {"Android Dark", "Android Light", "Blue", "White", "Flat", "Deep Black"};
+    public final static String themeNames[] = {"Android Dark", "Android Light", "Blue", "White", "Flat", "Deep Black", "Grey Black"};
     public final static int THEME_ANDROID_DARK = 0;
     public final static int THEME_ANDROID_LIGHT = 1;
     public final static int THEME_BLUE = 2;
     public final static int THEME_WHITE = 3;
     public final static int THEME_FLAT = 4;
     public final static int THEME_DEEPBLACK = 5;
+    public final static int THEME_GREYBLACK = 6;
 
     public final static int THEME_NO_THEME = 100;
 
@@ -157,6 +158,9 @@ public class Themes {
                 break;
             case THEME_DEEPBLACK:
                 context.setTheme(R.style.Theme_DeepBlack);
+            case THEME_GREYBLACK:
+                context.setTheme(R.style.Theme_GreyBlack);
+
 
 
             case -1:
@@ -266,8 +270,13 @@ public class Themes {
                         break;
                     case THEME_DEEPBLACK:
                         lv.setSelector(R.drawable.deepblack_deckpicker_list_selector);
-                        lv.setBackgroundResource(R.drawable.deepblack_deckpicker_lv_background);
+                        // Attempting switch from programmatic to XML, disabling following line.  Consider making that drawable accessible from xml
+
+//                        lv.setBackgroundResource(R.drawable.deepblack_deckpicker_lv_background);
 //                        recursivelyTheme(lv);
+
+                    case THEME_GREYBLACK:
+                        lv.setSelector(R.drawable.deepblack_deckpicker_list_selector);
                         break;
                     default:
                         break;
@@ -391,7 +400,7 @@ public class Themes {
 
     // temporary hack js
     public static void forceIterateTheme() {
-        mCurrentTheme = (mCurrentTheme > 4) ? 2 : (mCurrentTheme + 1);  // Hack js
+        mCurrentTheme = (mCurrentTheme > 5) ? 2 : (mCurrentTheme + 1);  // Hack js
     }
 
     public static void loadTheme() {
