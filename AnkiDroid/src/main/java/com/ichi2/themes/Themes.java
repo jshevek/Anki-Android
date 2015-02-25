@@ -121,7 +121,7 @@ public class Themes {
 
 
     public static void applyTheme(Context context) {
-          applyTheme(context, mCurrentTheme);
+        applyTheme(context, mCurrentTheme);
 //        applyTheme(context, -1);
     }
 
@@ -132,7 +132,6 @@ public class Themes {
         if (mCurrentTheme == -1) {
             loadTheme();
         }
-
 
 
         switch (theme == -1 ? mCurrentTheme : theme) {
@@ -158,15 +157,16 @@ public class Themes {
                 break;
             case THEME_DEEPBLACK:
                 context.setTheme(R.style.Theme_DeepBlack);
+                break;
             case THEME_GREYBLACK:
                 context.setTheme(R.style.Theme_GreyBlack);
-
+                break;
 
 
             case -1:
                 break;
         }
-        Timber.d("Set theme: "+themeNames[mCurrentTheme]);
+        Timber.d("Set theme: " + themeNames[mCurrentTheme]);
         Log.e("JS", "theme: " + themeNames[mCurrentTheme]);  // js
 
 
@@ -189,6 +189,8 @@ public class Themes {
 
 
     public static void setContentStyle(View view, int caller) {
+
+        Log.e("JS", "<< --- SET CONTENT STYLE CALLED -- >>");
         setFont(view);
         switch (caller) {
             case CALLER_STUDYOPTIONS:
@@ -246,10 +248,8 @@ public class Themes {
 
             case CALLER_DECKPICKER:
                 ListView lv = (ListView) view.findViewById(R.id.files);
-
-
-                lv.setVerticalScrollBarEnabled(false);
-                lv.setFadingEdgeLength(15);
+//                lv.setVerticalScrollBarEnabled(false); // Moved to xml
+                lv.setFadingEdgeLength(15);  // move this to xml
                 lv.setDividerHeight(0);
                 AnkiDroidApp.getCompat().setOverScrollModeNever(lv);
 
@@ -272,11 +272,12 @@ public class Themes {
                         lv.setSelector(R.drawable.deepblack_deckpicker_list_selector);
                         // Attempting switch from programmatic to XML, disabling following line.  Consider making that drawable accessible from xml
 
-//                        lv.setBackgroundResource(R.drawable.deepblack_deckpicker_lv_background);
+                        lv.setBackgroundResource(R.drawable.deepblack_deckpicker_lv_background);
 //                        recursivelyTheme(lv);
-
+                        break;
                     case THEME_GREYBLACK:
                         lv.setSelector(R.drawable.deepblack_deckpicker_list_selector);
+                        lv.setBackgroundResource(R.drawable.deepblack_deckpicker_lv_background);
                         break;
                     default:
                         break;
@@ -431,9 +432,9 @@ public class Themes {
                 mToastBackground = 0;
                 mBackgroundDarkColor = 0;
                 mReviewerProgressbarColorID = 0;
-                mCardbrowserItemBorder = new int[] { 0, R.color.card_browser_marked, R.color.card_browser_suspended,
-                        R.color.card_browser_marked };
-                mChartColors = new int[] { Color.WHITE, Color.BLACK };
+                mCardbrowserItemBorder = new int[]{0, R.color.card_browser_marked, R.color.card_browser_suspended,
+                        R.color.card_browser_marked};
+                mChartColors = new int[]{Color.WHITE, Color.BLACK};
                 mPopupTopBright = R.drawable.popup_top_bright;
                 mPopupTopMedium = R.drawable.popup_top_bright;
                 mPopupTopDark = R.drawable.popup_top_dark;
@@ -470,10 +471,10 @@ public class Themes {
                 mBackgroundDarkColor = 0;
                 mDialogBackgroundColor = mContext.getResources().getColor(R.color.card_browser_background);
                 // Fix mContext.getResources().getColor() for this
-                mCardbrowserItemBorder = new int[] { 0, R.color.card_browser_marked, R.color.card_browser_suspended,
-                        R.color.card_browser_marked };
+                mCardbrowserItemBorder = new int[]{0, R.color.card_browser_marked, R.color.card_browser_suspended,
+                        R.color.card_browser_marked};
                 mReviewerProgressbarColorID = mProgressbarsYoungColorID;
-                mChartColors = new int[] { Color.BLACK, Color.WHITE };
+                mChartColors = new int[]{Color.BLACK, Color.WHITE};
                 mPopupTopDark = R.drawable.popup_top_dark;
                 mPopupTopBright = R.drawable.popup_top_bright;
                 mPopupTopMedium = R.drawable.popup_top_bright;
@@ -510,10 +511,10 @@ public class Themes {
                 mDialogBackgroundColor = mContext.getResources().getColor(R.color.background_dialog_blue);
                 mBackgroundDarkColor = mContext.getResources().getColor(R.color.background_dark_blue);
                 mReviewerProgressbarColorID = R.color.reviewer_progressbar_session_blue;
-                mCardbrowserItemBorder = new int[] { R.drawable.blue_bg_cardbrowser,
+                mCardbrowserItemBorder = new int[]{R.drawable.blue_bg_cardbrowser,
                         R.drawable.blue_bg_cardbrowser_marked, R.drawable.blue_bg_cardbrowser_suspended,
-                        R.drawable.blue_bg_cardbrowser_marked_suspended };
-                mChartColors = new int[] { Color.BLACK, Color.WHITE };
+                        R.drawable.blue_bg_cardbrowser_marked_suspended};
+                mChartColors = new int[]{Color.BLACK, Color.WHITE};
                 mPopupTopDark = R.drawable.blue_popup_top_dark;
                 mPopupTopBright = R.drawable.blue_popup_top_bright;
                 mPopupTopMedium = R.drawable.blue_popup_top_medium;
@@ -549,10 +550,10 @@ public class Themes {
                 mDialogBackgroundColor = mContext.getResources().getColor(R.color.background_dialog_blue);
                 mBackgroundDarkColor = mContext.getResources().getColor(R.color.background_dark_blue);
                 mReviewerProgressbarColorID = R.color.reviewer_progressbar_session_blue;
-                mCardbrowserItemBorder = new int[] { R.drawable.blue_bg_cardbrowser,
+                mCardbrowserItemBorder = new int[]{R.drawable.blue_bg_cardbrowser,
                         R.drawable.blue_bg_cardbrowser_marked, R.drawable.blue_bg_cardbrowser_suspended,
-                        R.drawable.blue_bg_cardbrowser_marked_suspended };
-                mChartColors = new int[] { Color.BLACK, Color.WHITE };
+                        R.drawable.blue_bg_cardbrowser_marked_suspended};
+                mChartColors = new int[]{Color.BLACK, Color.WHITE};
                 mPopupTopDark = R.drawable.blue_popup_top_dark;
                 mPopupTopBright = R.drawable.blue_popup_top_bright;
                 mPopupTopMedium = R.drawable.blue_popup_top_medium;
@@ -592,10 +593,10 @@ public class Themes {
                 mDialogBackgroundColor = mContext.getResources().getColor(R.color.white);
                 mBackgroundDarkColor = mContext.getResources().getColor(R.color.background_dark_blue);
                 mReviewerProgressbarColorID = R.color.reviewer_progressbar_session_blue;
-                mCardbrowserItemBorder = new int[] { R.drawable.white_bg_cardbrowser,
+                mCardbrowserItemBorder = new int[]{R.drawable.white_bg_cardbrowser,
                         R.drawable.white_bg_cardbrowser_marked, R.drawable.white_bg_cardbrowser_suspended,
-                        R.drawable.white_bg_cardbrowser_marked_suspended };
-                mChartColors = new int[] { Color.BLACK, Color.WHITE };
+                        R.drawable.white_bg_cardbrowser_marked_suspended};
+                mChartColors = new int[]{Color.BLACK, Color.WHITE};
                 mPopupTopBright = R.drawable.white_popup_top_bright;
                 mPopupTopMedium = R.drawable.white_popup_top_medium;
                 mPopupTopDark = mPopupTopMedium;
@@ -635,10 +636,10 @@ public class Themes {
                 mDialogBackgroundColor = mContext.getResources().getColor(R.color.deepblack_background);
                 mBackgroundDarkColor = mContext.getResources().getColor(R.color.background_dark_blue);  // TODO tweak
                 mReviewerProgressbarColorID = R.color.reviewer_progressbar_session_blue;
-                mCardbrowserItemBorder = new int[] { R.drawable.deepblack_bg_cardbrowser,
+                mCardbrowserItemBorder = new int[]{R.drawable.deepblack_bg_cardbrowser,
                         R.drawable.deepblack_bg_cardbrowser_marked, R.drawable.deepblack_bg_cardbrowser_suspended,
-                        R.drawable.deepblack_bg_cardbrowser_marked_suspended };
-                mChartColors = new int[] { Color.WHITE, Color.BLACK };  // TODO tweak this
+                        R.drawable.deepblack_bg_cardbrowser_marked_suspended};
+                mChartColors = new int[]{Color.WHITE, Color.BLACK};  // TODO tweak this
                 mPopupTopBright = R.drawable.deepblack_popup_top_bright;
                 mPopupTopMedium = R.drawable.deepblack_popup_top_medium;
                 mPopupTopDark = mPopupTopMedium;  // TODO not sure correct color for deepblack theme
@@ -660,6 +661,7 @@ public class Themes {
                 break;
 
         }
+        initTheme();
     }
 
 
@@ -784,7 +786,7 @@ public class Themes {
 
 
     public static void setMargins(View view, int width, int height, float dipLeft, float dipTop, float dipRight,
-            float dipBottom) {
+                                  float dipBottom) {
         View parent = (View) view.getParent();
 //        parent.setBackgroundResource(mBackgroundColor);
         parent.setBackgroundColor(mBackgroundColor);
@@ -830,16 +832,13 @@ public class Themes {
     }
 
 
-
-
-
-
-
     public static int getTheme() {
         return mCurrentTheme;
     }
 
-    public static String getThemeName() {return themeNames[mCurrentTheme];}
+    public static String getThemeName() {
+        return themeNames[mCurrentTheme];
+    }
 
 
     public static int[] getCardBrowserBackground() {
@@ -877,13 +876,13 @@ public class Themes {
 
 
     public static StyledDialog htmlOkDialog(Context context, String title, String text, OnClickListener okListener,
-            OnCancelListener cancelListener) {
+                                            OnCancelListener cancelListener) {
         return htmlOkDialog(context, title, text, null, null, false);
     }
 
 
     public static StyledDialog htmlOkDialog(Context context, String title, String text, OnClickListener okListener,
-            OnCancelListener cancelListener, boolean includeBody) {
+                                            OnCancelListener cancelListener, boolean includeBody) {
         StyledDialog.Builder builder = new StyledDialog.Builder(context);
         builder.setTitle(title);
         WebView view = new WebView(context);
@@ -929,7 +928,7 @@ public class Themes {
 
     public static void setStyledDialogBackgrounds(View main) {
         int buttonCount = 0;
-        for (int id : new int[] { R.id.positive_button, R.id.negative_button, R.id.neutral_button }) {
+        for (int id : new int[]{R.id.positive_button, R.id.negative_button, R.id.neutral_button}) {
             if (main.findViewById(id).getVisibility() == View.VISIBLE) {
                 buttonCount++;
             }
@@ -1098,8 +1097,8 @@ public class Themes {
         View ease4 = view.findViewById(R.id.flashcard_layout_ease4);
         View border = view.findViewById(R.id.flashcard_border);
         View mAnswerField = view.findViewById(R.id.answer_field);
-        final Drawable[] defaultButtons = new Drawable[] { flipCard.getBackground(), ease1.getBackground(),
-                ease2.getBackground(), ease3.getBackground(), ease4.getBackground() };
+        final Drawable[] defaultButtons = new Drawable[]{flipCard.getBackground(), ease1.getBackground(),
+                ease2.getBackground(), ease3.getBackground(), ease4.getBackground()};
 
         int foregroundColor;
         int nextTimeRecommendedColor;
@@ -1141,10 +1140,10 @@ public class Themes {
             border.setBackgroundResource(mFlashcardBorder);
         }
 
-        return new int[] { foregroundColor, nextTimeRecommendedColor };
+        return new int[]{foregroundColor, nextTimeRecommendedColor};
     }
 
-    public static int getDeckpickerListElementBackground(String  text) {
+    public static int getDeckpickerListElementBackground(String text) {
 //        Log.e("JS", "getDeckPicker...");
         // There is surely a smarter, cleaner way to do all of this
         if (text.equals("top")) {
@@ -1196,7 +1195,7 @@ public class Themes {
     public static TypedArray getNavigationImages(Resources resources) {
         if (mCurrentTheme != THEME_DEEPBLACK) {
             return resources.obtainTypedArray(R.array.drawer_images);
-        }else {
+        } else {
             return resources.obtainTypedArray(R.array.drawer_images_deepblack);
         }
     }
@@ -1205,5 +1204,89 @@ public class Themes {
         SpannableString span = new SpannableString(mTitle);
         span.setSpan(new ForegroundColorSpan(mForegroundColor), 0, mTitle.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
         return span;
+    }
+
+
+    // ///////////////////////////////////////////////////////////
+    // Most of the code above this line will eventually be removed. 
+    // Code below this line reflects the necessary (can't be moved to xml)
+    //   fields and methods to dynamically theme the app
+
+
+    static int mDeckPickerDynamicTextColor;
+    static int mDeckPickerNonDynamicTextColor;
+
+    // this is 'loadTheme' rewritten piece by piece, filtering for xml-ifiable pieces
+    public static void initTheme() {
+        int mDeckPickerDynamicTextColor = mContext.getResources().getColor(R.color.dyn_deck);
+        int mDeckPickerNonDynamicTextColor = mContext.getResources().getColor(R.color.non_dyn_deck);
+    }
+
+    // Make mDeckPickerNonDynamicTextColor the same as 'foreground' or 'generic text color' ?
+
+    public static int getDeckPicker_Non_DynamicTextColor() {
+        return mDeckPickerNonDynamicTextColor;
+    }
+
+    public static int getDeckPickerDynamicTextColor() {
+        return mDeckPickerDynamicTextColor;
+    }
+
+    public static int getDeckPickerZeroCountTextColor() {
+        return mContext.getResources().getColor(R.color.zero_count);
+
+    }
+
+
+    // later make these getDeckPicker color methods rely on themes state data (or themes.xml ?)
+    // rather than directly on the color definitions
+    public static int getDeckPickerNewTextColor() {
+        return mContext.getResources().getColor(R.color.new_count);
+    }
+
+    public static int getDeckPickerLearnTextColor() {
+        return mContext.getResources().getColor(R.color.learn_count);
+    }
+
+    public static int getDeckPickerReviewTextColor() {
+        return mContext.getResources().getColor(R.color.review_count);
+    }
+
+
+    // This will replace setContentStyle, and may itself be replaced by proper use of xml
+    public static void setDeckPickerContentStyle(View view) {
+        ListView lv = (ListView) view.findViewById(R.id.files);
+//                lv.setVerticalScrollBarEnabled(false); // Moved to xml
+        lv.setFadingEdgeLength(15);  // move this to xml
+        lv.setDividerHeight(0);
+        AnkiDroidApp.getCompat().setOverScrollModeNever(lv);
+
+        switch (mCurrentTheme) {
+
+            case THEME_BLUE:
+                lv.setSelector(R.drawable.blue_deckpicker_list_selector);
+                break;
+            case THEME_FLAT:
+                lv.setSelector(R.drawable.blue_deckpicker_list_selector);
+                break;
+            case THEME_WHITE:
+                lv.setSelector(R.drawable.white_deckpicker_list_selector);
+                lv.setBackgroundResource(R.drawable.white_deckpicker_lv_background);
+                view.setBackgroundResource(mWallpaper);
+                // lv.setDivider(mContext.getResources().getDrawable(R.drawable.white_listdivider));
+                // setMargins(view, LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT, 4f, 4f, 4f, 4f);
+                break;
+            case THEME_DEEPBLACK:
+                lv.setSelector(R.drawable.deepblack_deckpicker_list_selector);
+                lv.setBackgroundResource(R.drawable.deepblack_deckpicker_lv_background);
+                break;
+            case THEME_GREYBLACK:
+                lv.setSelector(R.drawable.deepblack_deckpicker_list_selector);
+                lv.setBackgroundResource(R.drawable.deepblack_deckpicker_lv_background);
+                break;
+            default:
+                break;
+        }
+
     }
 }

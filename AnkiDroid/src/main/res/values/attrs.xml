@@ -48,6 +48,9 @@
 		<attr name="newTextColor" format="color" />
 
         <attr name="flashCardButtonBackground" format="color"  />
+        <!--<attr name="deckPickerItemSelectorBackground" format="reference"  />-->
+        <attr name="deckPickerListSelector" format="reference"  />
+
 
         <!-- for compatibility with old blue theme.  optional ?
         <attr name="studyOptionsBackground" format="reference" />

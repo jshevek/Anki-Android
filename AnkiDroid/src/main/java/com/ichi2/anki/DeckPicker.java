@@ -415,8 +415,8 @@ public class DeckPicker extends NavigationDrawerActivity implements OnShowcaseEv
         // set protected variable from NavigationDrawerActivity
         mFragmented = studyoptionsFrame != null && studyoptionsFrame.getVisibility() == View.VISIBLE;
 
-        Themes.setContentStyle(mFragmented ? mainView : mainView.findViewById(R.id.deckpicker_view),
-                Themes.CALLER_DECKPICKER);
+//        Themes.setContentStyle(mFragmented ? mainView : mainView.findViewById(R.id.deckpicker_view),                Themes.CALLER_DECKPICKER);
+        Themes.setDeckPickerContentStyle(mFragmented ? mainView : mainView.findViewById(R.id.deckpicker_view));
 
         registerExternalStorageListener();
 
@@ -441,38 +441,32 @@ public class DeckPicker extends NavigationDrawerActivity implements OnShowcaseEv
 //                Themes.loadTheme();  // Compensate for improper setup, remove this line when fixed
                 if (view.getId() == R.id.deckpicker_deck) {
                     view.setBackgroundResource(Themes.getDeckpickerListElementBackground(text));
-
-//                    Themes.setTextColor(view);
                     return true;
                 } else if (view.getId() == R.id.DeckPickerName) {
-                    // What do d0 and d1 signify?
+                    // d0 and d1 signify non-dynamic and dynamic decks
+                    // I don't see any reasonable way to move this (modification of text colors based on whether decks are dynamic) into xml
                     if (text.equals("d0")) {
-//                        ((TextView) view).setTextColor(getResources().getColor(R.color.non_dyn_deck));
-//                        ((TextView) view).setTextColor(getResources().getColor(android.R.color.holo_red_light));
-                        ((TextView) view).setTextColor(Themes.getForegroundColor());
-
+                        ((TextView) view).setTextColor(  Themes.getDeckPicker_Non_DynamicTextColor() );
                         return true;
                     } else if (text.equals("d1")) {
-//                        ((TextView) view).setTextColor(Themes.getForegroundColor());
-
+                        ((TextView) view).setTextColor(  Themes.getDeckPickerDynamicTextColor() );
                         return true;
                     }
                 } else if (view.getId() == R.id.deckpicker_new) {
-                    // Trying to get away from programmatic control of UI, making the color depend on the value is natural programmatic
-                    ((TextView) view).setTextColor(getResources().getColor(R.color.dyn_deck));
-                    // Set the right color, light gray or blue.
-                    ((TextView) view).setTextColor((text.equals("0")) ? getResources().getColor(R.color.zero_count)
-                            : getResources().getColor(R.color.new_count));
+                    // Trying to get away from programmatic control of UI, but making the color depend on the value is naturally programmatic
+                    // Set the right color, according to the theme.
+                    ((TextView) view).setTextColor((text.equals("0")) ? Themes.getDeckPickerZeroCountTextColor() :
+                            Themes.getDeckPickerNewTextColor());
                     return false; // Let SimpleAdapter take care of binding the number to the TextView.
                 } else if (view.getId() == R.id.deckpicker_lrn) {
                     // ... or red.
-                    ((TextView) view).setTextColor((text.equals("0")) ? getResources().getColor(R.color.zero_count)
-                            : getResources().getColor(R.color.learn_count));
+                    ((TextView) view).setTextColor((text.equals("0")) ? Themes.getDeckPickerZeroCountTextColor() :
+                            Themes.getDeckPickerLearnTextColor());
                     return false;
                 } else if (view.getId() == R.id.deckpicker_rev) {
                     // ... or green.
-                    ((TextView) view).setTextColor((text.equals("0")) ? getResources().getColor(R.color.zero_count)
-                            : getResources().getColor(R.color.review_count));
+                    ((TextView) view).setTextColor((text.equals("0")) ? Themes.getDeckPickerZeroCountTextColor() :
+                            Themes.getDeckPickerReviewTextColor());
                     return false;
                 }
                 return false;
@@ -822,8 +816,9 @@ public class DeckPicker extends NavigationDrawerActivity implements OnShowcaseEv
         if ((keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)){
             Themes.forceIterateTheme();  // Hack for dev/testing only.
             Themes.applyTheme(this, Themes.getTheme());
-            Themes.loadTheme();
-            Themes.setContentStyle(getCurrentFocus().getRootView(), Themes.CALLER_DECKPICKER);
+//            Themes.loadTheme();
+//            Themes.setContentStyle(getCurrentFocus().getRootView(), Themes.CALLER_DECKPICKER);
+            Themes.setDeckPickerContentStyle(getCurrentFocus().getRootView());
             Log.e("JS", "keydown");
             Toast.makeText(this, "Theme: "+Themes.getThemeName(), Toast.LENGTH_SHORT).show();
             finish();

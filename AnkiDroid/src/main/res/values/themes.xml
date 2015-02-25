@@ -37,6 +37,10 @@
         <item name="flashCardButtonBackground">#00000000</item>
 
 
+        <!-- taken out of Themes.java  -->
+        <item name="deckPickerListSelector">@drawable/white_deckpicker_list_selector</item>
+
+
         <item name="android:buttonStyle">@style/White.Button</item>
         <item name="android:buttonStyleSmall">@style/White.Button.Small</item>
         <item name="android:buttonStyleToggle">@style/White.Button.Toggle</item>
@@ -139,6 +143,9 @@
         <item name="backgroundElevatedColor">#000000</item>
 
 
+        <item name="deckPickerListSelector">@drawable/deepblack_deckpicker_list_selector</item>
+
+
         <item name="android:buttonStyle">@style/DeepBlack.Button</item>
         <item name="android:buttonStyleSmall">@style/DeepBlack.Button.Small</item>
         <item name="android:buttonStyleToggle">@style/DeepBlack.Button.Toggle</item>
@@ -167,6 +174,7 @@
     <style name="Theme_GreyBlack" parent="@style/Theme_DeepBlack">
     <item name="backgroundColor">#333333</item>
     <item name="backgroundElevatedColor">#080808</item>
+        <item name="deckPickerListSelector">@drawable/deepblack_deckpicker_list_selector</item>
 </style>
 
     <style name="Theme_White_Statistics" parent="@style/Theme_White">

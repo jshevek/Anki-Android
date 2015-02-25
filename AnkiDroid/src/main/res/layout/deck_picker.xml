@@ -13,6 +13,11 @@
 
         android:orientation="vertical" >
 
+        <!--
+        android:fadingEdgeLength="15sp"
+            android:dividerHeight="@null"
+-->
+
         <ListView
             android:id="@+id/files"
             android:layout_width="fill_parent"
@@ -21,6 +26,7 @@
             android:background="?android:attr/colorBackground"
             android:drawSelectorOnTop="true"
             android:fastScrollEnabled="true"
+             android:scrollbars="none"
             android:layout_above="@+id/today_stats_text_view"
             android:focusable="true" />
         <TextView
