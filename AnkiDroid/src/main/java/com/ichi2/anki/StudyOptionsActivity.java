@@ -162,8 +162,8 @@ public class StudyOptionsActivity extends NavigationDrawerActivity implements St
         }
         if ((keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)){
 //            Log.e("JS", "keydown");
-            Toast.makeText(this, "Theme: " + Themes.getThemeName(), Toast.LENGTH_SHORT).show();
             Themes.forceIterateTheme();  // Hack for dev/testing only.
+            Toast.makeText(this, "Theme: " + Themes.getThemeName(), Toast.LENGTH_SHORT).show();
             Themes.applyTheme(this, Themes.getTheme());
             Themes.loadTheme();
             // Are all of these calls  - especially setContentStyle necessary to implement the theme?  How to simplify?

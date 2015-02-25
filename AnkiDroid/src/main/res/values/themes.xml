@@ -37,6 +37,9 @@
 
     <!-- Flat Theme -->
     <style name="Theme_Flat" parent="@style/Theme_Base_Custom_Light">
+        <item name="foregroundColor">#222222</item>
+
+
         <item name="android:buttonStyle">@style/Blue.Button</item>
         <item name="android:buttonStyleSmall">@style/Blue.Button.Small</item>
         <item name="android:buttonStyleToggle">@style/Blue.Button.Toggle</item>
@@ -67,6 +70,11 @@
         <item name="ic_media">@drawable/ic_media_deepblack</item>
         <item name="deckpicker_load_bg">@drawable/deckpicker_load_bg</item>
         <item name="ic_lookup">@drawable/ic_lookup_deepblack</item>
+        <item name="foregroundColor">#888888</item>
+
+        <item name="backgroundColor">#111111</item>
+        <item name="backgroundElevatedColor">#000000</item>
+
 
         <item name="android:buttonStyle">@style/DeepBlack.Button</item>
         <item name="android:buttonStyleSmall">@style/DeepBlack.Button.Small</item>
@@ -102,6 +110,14 @@
         <item name="ic_media">@drawable/ic_media</item>
         <item name="deckpicker_load_bg">@drawable/deckpicker_load_bg</item>
         <item name="ic_lookup">@drawable/ic_lookup</item>
+        <item name="foregroundColor">#FFFFFF</item>
+
+        <item name="learnTextColor">#ff0000</item>
+        <item name="reviewTextColor">#00ff00</item>
+        <item name="newTextColor">#0000ff</item>
+
+
+
 
         <item name="android:buttonStyle">@style/White.Button</item>
         <item name="android:buttonStyleSmall">@style/White.Button.Small</item>
@@ -146,6 +162,7 @@
         <item name="android:colorBackgroundCacheHint">@null</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowAnimationStyle">@android:style/Animation</item>
+        <!--         <item name="studyOptionsBackground">@drawable/</item> -->
     </style>
 
     <style name="Theme_Start" parent="@style/Theme_White">

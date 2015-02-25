@@ -1586,11 +1586,16 @@ public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity {
         mNext4.setTextColor(mNextTimeTextColor);
         mEase4.setTextColor(mNextTimeTextColor);
         mCardTimer.setTextColor(mForegroundColor);
-        mTextBarNew.setTextColor(invert ? res.getColor(R.color.new_count_night) : res.getColor(R.color.new_count));
-        mTextBarLearn
-                .setTextColor(invert ? res.getColor(R.color.learn_count_night) : res.getColor(R.color.learn_count));
-        mTextBarReview.setTextColor(invert ? res.getColor(R.color.review_count_night) : res
-                .getColor(R.color.review_count));
+
+        // Gradually shifting code over to an xml approach to theming, removing programatic theming.  However, leaving in 'invert' mode for now
+        // assume the non-inverted color was set correctly by the theme
+        if (invert) {
+            mTextBarNew.setTextColor(res.getColor(R.color.new_count_night));
+            mTextBarLearn.setTextColor(res.getColor(R.color.learn_count_night));
+            mTextBarReview.setTextColor(res.getColor(R.color.review_count_night));
+        }
+
+        // all of the following theming code should become unneeded:
         mAnswerField.setTextColor(mForegroundColor);
 
         if (mSimpleCard != null) {

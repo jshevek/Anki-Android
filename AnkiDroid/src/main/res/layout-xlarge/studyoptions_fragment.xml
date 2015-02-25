@@ -83,7 +83,7 @@
 	                                    android:layout_width="wrap_content"
 	                                    android:layout_height="wrap_content"
 	                                    android:paddingRight="5dip"
-	                                    android:textColor="@color/new_count" />
+	                                    android:textColor="?attr/learnTextColor" />
 	
 	                                <TextView
 	                                    android:id="@+id/studyoptions_lrn"
@@ -91,13 +91,13 @@
 	                                    android:layout_height="wrap_content"
 	                                    android:layout_gravity="center"
 	                                    android:paddingRight="5dip"
-	                                    android:textColor="@color/learn_count" />
+	                                    android:textColor="?attr/learnTextColor" />
 	
 	                                <TextView
 	                                    android:id="@+id/studyoptions_rev"
 	                                    android:layout_width="wrap_content"
 	                                    android:layout_height="wrap_content"
-	                                    android:textColor="@color/review_count" />
+	                                    android:textColor="?attr/learnTextColor" />
 	                            </LinearLayout>
 	                        </TableRow>
 	

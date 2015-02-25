@@ -458,6 +458,7 @@ public class DeckPicker extends NavigationDrawerActivity implements OnShowcaseEv
                         return true;
                     }
                 } else if (view.getId() == R.id.deckpicker_new) {
+                    // Trying to get away from programmatic control of UI, making the color depend on the value is natural programmatic
                     ((TextView) view).setTextColor(getResources().getColor(R.color.dyn_deck));
                     // Set the right color, light gray or blue.
                     ((TextView) view).setTextColor((text.equals("0")) ? getResources().getColor(R.color.zero_count)
