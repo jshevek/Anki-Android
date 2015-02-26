@@ -57,6 +57,12 @@
         <attr name="deckPickerListSelector" format="reference"  />
 
 
+        <!-- Card browser-specific theme settings -->
+        <attr name="card_browser_marked" format="color"/>
+        <attr name="card_browser_suspended" format="color"/>
+
+
+
         <!-- for compatibility with old blue theme.  optional ?
         <attr name="studyOptionsBackground" format="reference" />
 -->

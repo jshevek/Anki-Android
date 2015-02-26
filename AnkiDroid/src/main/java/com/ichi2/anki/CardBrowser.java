@@ -445,7 +445,8 @@ public class CardBrowser extends NavigationDrawerActivity implements ActionBar.O
             Themes.forceIterateTheme();  // Hack for dev/testing only.
             Toast.makeText(this, "Theme: " + Themes.getThemeName(), Toast.LENGTH_SHORT).show();
             Themes.applyTheme(this, Themes.getTheme());
-            Themes.loadTheme();
+//            Themes.loadTheme();
+            Themes.initTheme();
             // Are all of these calls  - especially setContentStyle necessary to implement the theme?  How to simplify?
             Themes.setContentStyle(getCurrentFocus().getRootView(), Themes.CALLER_CARDBROWSER);
             finish();
@@ -1161,12 +1162,18 @@ public class CardBrowser extends NavigationDrawerActivity implements ActionBar.O
                 TextView col = (TextView) columns[i];
                 // set font for column
                 setFont(col);
-                // set background color for column
-                col.setBackgroundResource(mBackground[color]);
+                // set background color for column, changed from setBackgroundResource     (See [1] below)
+                col.setBackgroundColor(mBackground[color]);  // Array now holds colors, not IDs
                 // set text for column
                 col.setText(dataSet.get(mFromKeys[i]));
             }
         }
+
+
+        // [1] This code previously appeared to supported the use of any appropriate Resource ID (not just colors) to be used directly as backgrounds for
+        // marked and suspended cards.   Since API 21 seems to be broken, and since everyone seems happy to use colors anyway, I'm limiting the
+        // setBackground functionality to colors here (not images)
+        // http://stackoverflow.com/questions/7675231/background-issue-with-styles-and-themes
 
 
         private void setFont(TextView v) {

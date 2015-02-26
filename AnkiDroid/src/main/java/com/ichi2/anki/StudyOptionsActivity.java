@@ -165,7 +165,7 @@ public class StudyOptionsActivity extends NavigationDrawerActivity implements St
             Themes.forceIterateTheme();  // Hack for dev/testing only.
             Toast.makeText(this, "Theme: " + Themes.getThemeName(), Toast.LENGTH_SHORT).show();
             Themes.applyTheme(this, Themes.getTheme());
-            Themes.loadTheme();
+            Themes.initTheme();
             // Are all of these calls  - especially setContentStyle necessary to implement the theme?  How to simplify?
             Themes.setContentStyle(getCurrentFocus().getRootView(), Themes.CALLER_STUDYOPTIONS);
             finish();

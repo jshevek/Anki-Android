@@ -163,6 +163,13 @@
         <item name="reviewTextColor">#44ff44</item>
         <item name="newTextColor">#ff99FF</item>
 
+        <!-- Card broswer specific theme settings -->
+        <item name="card_browser_marked">@color/card_browser_marked</item>
+        <item name="card_browser_suspended">@color/card_browser_suspended</item>
+
+
+
+
 
         <item name="deckPickerListSelector">@drawable/deepblack_deckpicker_list_selector</item>
 
