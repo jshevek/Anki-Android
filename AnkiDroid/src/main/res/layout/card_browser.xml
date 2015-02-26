@@ -22,7 +22,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="?android:attr/colorBackground" />
+                />
+
+            <!--
+
+            android:background="?android:attr/colorBackground"
+            -->
 
             <Spinner
                 android:id="@+id/browser_column2_spinner"

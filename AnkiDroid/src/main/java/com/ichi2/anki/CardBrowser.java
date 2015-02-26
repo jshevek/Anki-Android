@@ -448,7 +448,8 @@ public class CardBrowser extends NavigationDrawerActivity implements ActionBar.O
 //            Themes.loadTheme();
             Themes.initTheme();
             // Are all of these calls  - especially setContentStyle necessary to implement the theme?  How to simplify?
-            Themes.setContentStyle(getCurrentFocus().getRootView(), Themes.CALLER_CARDBROWSER);
+//            Themes.setContentStyle(getCurrentFocus().getRootView(), Themes.CALLER_CARDBROWSER);
+            Themes.setCardBrowserContentStyle(getCurrentFocus().getRootView());
             finish();
             startActivity(getIntent());
             return true;
