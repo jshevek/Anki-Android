@@ -910,8 +910,9 @@ public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity {
         super.onCreate(savedInstanceState);
         Timber.d("onCreate()");
 
-        mChangeBorderStyle = Themes.getTheme() == Themes.THEME_ANDROID_LIGHT
-                || Themes.getTheme() == Themes.THEME_ANDROID_DARK;
+        mChangeBorderStyle = false;
+//        Themes.getTheme() == Themes.THEME_ANDROID_LIGHT
+//                || Themes.getTheme() == Themes.THEME_ANDROID_DARK;
 
         // create inherited navigation drawer layout here so that it can be used by parent class
         View mainView = getLayoutInflater().inflate(R.layout.flashcard, null);
@@ -1090,7 +1091,7 @@ public abstract class AbstractFlashcardViewer extends NavigationDrawerActivity {
 
         if ((keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)){
 //            Log.e("JS", "keydown");
-            Themes.forceIterateTheme();  // Hack for dev/testing only.
+            Themes.forceIncrementTheme();  // Hack for dev/testing only.
             Toast.makeText(this, "Theme: " + Themes.getThemeName(), Toast.LENGTH_SHORT).show();
             Themes.applyTheme(this, Themes.getTheme());
 //            Themes.loadTheme();

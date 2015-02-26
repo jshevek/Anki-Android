@@ -1798,7 +1798,7 @@ public class NoteEditor extends AnkiActivity {
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         if ((keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)){
 //            Log.e("JS", "keydown");
-            Themes.forceIterateTheme();  // Hack for dev/testing only.
+            Themes.forceIncrementTheme();  // Hack for dev/testing only.
             Toast.makeText(this, "Theme: " + Themes.getThemeName(), Toast.LENGTH_SHORT).show();
             Themes.applyTheme(this, Themes.getTheme());
 //            Themes.loadTheme();

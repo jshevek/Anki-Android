@@ -51,18 +51,6 @@ import timber.log.Timber;
 
 public class Themes {
 
-//    public final static String themeNames[] = {"Android Dark", "Android Light", "Blue", "White", "Flat", "Deep Black", "Grey Black"};
-    public final static String themeNames[] = {"Blue", "White", "Flat", "Deep Black", "Grey Black"};
-
-//    public final static int THEME_ANDROID_DARK = 0;
-//    public final static int THEME_ANDROID_LIGHT = 1;
-    public final static int THEME_BLUE = 0;
-    public final static int THEME_WHITE = 1;
-    public final static int THEME_FLAT = 2;
-    public final static int THEME_DEEPBLACK = 3;
-    public final static int THEME_GREYBLACK = 4;
-
-//    public final static int THEME_NO_THEME = 100;
 
     public final static int CALLER_STUDYOPTIONS = 1;
     public final static int CALLER_DECKPICKER_DECK = 3;
@@ -170,7 +158,7 @@ public class Themes {
         }
 
         // This entire -1 business seems at best poorly (unclearly) written, and at worst useless
-        if ((mCurrentTheme >=0) && (mCurrentTheme <= themeNames.length)) {
+        if ((mCurrentTheme >=0) && (mCurrentTheme < themeNames.length)) {
             Timber.d("Set theme: " + themeNames[mCurrentTheme]);
             Log.e("JS", "theme: " + themeNames[mCurrentTheme]);  // js
         } else {
@@ -1215,9 +1203,25 @@ public class Themes {
     /////////////////////////////////////////////////////////////////////////////////////////////
     // The following methods are included for dev / debug purposes only
 
+    //    public final static String themeNames[] = {"Android Dark", "Android Light", "Blue", "White", "Flat", "Deep Black", "Grey Black"};
+    public final static String themeNames[] = {"Blue", "White", "Flat", "Deep Black", "Grey Black"};
+
+    //    public final static int THEME_ANDROID_LIGHT = 1;
+    public final static int THEME_BLUE = 0;
+    public final static int THEME_WHITE = 1;
+    public final static int THEME_FLAT = 2;
+    public final static int THEME_DEEPBLACK = 3;
+    public final static int THEME_GREYBLACK = 4;
+
+    public final static int THEME_ANDROID_DARK = 5; // For SDK level bug mentioned in CramDeckOptions, DeckOptions, and Preferences
+    // Re-instate THEME_ANDROID_DARK logic, or find another solution
+
+//    public final static int THEME_NO_THEME = 100;
+
+
     // temporary hack js
     public static void forceIncrementTheme() {
-        mCurrentTheme = (mCurrentTheme >= themeNames.length) ? 0 : (mCurrentTheme + 1);  // Hack js
+        mCurrentTheme = (mCurrentTheme >= themeNames.length - 1) ? 0 : (mCurrentTheme + 1);  // Hack js
     }
 
     public static void forceDecrementTheme() {

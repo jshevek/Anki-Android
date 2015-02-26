@@ -455,7 +455,12 @@ public class DeckPicker extends NavigationDrawerActivity implements OnShowcaseEv
                     } else if (text.equals("d1")) {
                         ((TextView) view).setTextColor(  Themes.getDeckPickerDynamicTextColor() );
                         return true;
+                    } else {
+                        // Handle case which should never happen?  Is there any situation besides dynamic and non-dynamic? Do we need a 'normal' case?
+                        ((TextView) view).setTextColor(  Themes.getDeckPicker_Non_DynamicTextColor() );
+                        return true;
                     }
+
                 } else if (view.getId() == R.id.deckpicker_new) {
                     // Trying to get away from programmatic control of UI, but making the color depend on the value is naturally programmatic
                     // Set the right color, according to the theme.
@@ -818,7 +823,7 @@ public class DeckPicker extends NavigationDrawerActivity implements OnShowcaseEv
         }
 
         if ((keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)){
-            Themes.forceIterateTheme();  // Hack for dev/testing only.
+            Themes.forceIncrementTheme();  // Hack for dev/testing only.
             Themes.applyTheme(this, Themes.getTheme());
 //            Themes.loadTheme();
             Themes.initTheme();
