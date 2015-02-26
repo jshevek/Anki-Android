@@ -447,21 +447,34 @@ public class DeckPicker extends NavigationDrawerActivity implements OnShowcaseEv
                     view.setBackgroundResource(Themes.getDeckPickerListElementBackground(text));
                     return true;
                 } else if (view.getId() == R.id.DeckPickerName) {
+                    Themes.initTheme();
+                    Log.e("JS",  "  --- BIND VIEW ---");
                     // d0 and d1 signify non-dynamic and dynamic decks
                     // I don't see any reasonable way to move this (modification of text colors based on whether decks are dynamic) into xml
                     if (text.equals("d0")) {
-                        ((TextView) view).setTextColor(  Themes.getDeckPicker_Non_DynamicTextColor() );
+                        Log.e("JS",  "  --- BIND VIEW 1---");
+
+//                        ((TextView) view).setTextColor(  Themes.getDeckPicker_Non_DynamicTextColor() );
+                        ((TextView) view).setTextColor(  Themes.getDeckPickerZeroCountTextColor());
                         return true;
                     } else if (text.equals("d1")) {
+                        Log.e("JS",  "  --- BIND VIEW 2---");
+
                         ((TextView) view).setTextColor(  Themes.getDeckPickerDynamicTextColor() );
+                        ((TextView) view).setTextColor(  Themes.getForegroundColor() );
                         return true;
                     } else {
+                        Log.e("JS",  "  --- BIND VIEW 3---");
+
                         // Handle case which should never happen?  Is there any situation besides dynamic and non-dynamic? Do we need a 'normal' case?
-                        ((TextView) view).setTextColor(  Themes.getDeckPicker_Non_DynamicTextColor() );
+                        ((TextView) view).setTextColor(  Themes.getForegroundColor() );
                         return true;
                     }
 
+
                 } else if (view.getId() == R.id.deckpicker_new) {
+                    Log.e("JS",  "  --- BIND VIEW new ---");
+
                     // Trying to get away from programmatic control of UI, but making the color depend on the value is naturally programmatic
                     // Set the right color, according to the theme.
                     ((TextView) view).setTextColor((text.equals("0")) ? Themes.getDeckPickerZeroCountTextColor() :
@@ -808,17 +821,17 @@ public class DeckPicker extends NavigationDrawerActivity implements OnShowcaseEv
         }
 
         if ((keyCode == KeyEvent.KEYCODE_VOLUME_UP)) {
-            if (! startedTracing) {
-                Log.e("JS", "volume up keydown - starting method tracing");
-                Toast.makeText(this, "start tracing ", Toast.LENGTH_SHORT).show();
-                Debug.startMethodTracing("themes");
-                startedTracing = true;
-            } else {
-                Log.e("JS", "volume up keydown - stopping method tracing");
-                Toast.makeText(this, "stop tracing ", Toast.LENGTH_SHORT).show();
-                Debug.stopMethodTracing();
-
-            }
+//            if (! startedTracing) {
+//                Log.e("JS", "volume up keydown - starting method tracing");
+//                Toast.makeText(this, "start tracing ", Toast.LENGTH_SHORT).show();
+//                Debug.startMethodTracing("themes");
+//                startedTracing = true;
+//            } else {
+//                Log.e("JS", "volume up keydown - stopping method tracing");
+//                Toast.makeText(this, "stop tracing ", Toast.LENGTH_SHORT).show();
+//                Debug.stopMethodTracing();
+//
+//            }
 
         }
 
@@ -837,16 +850,12 @@ public class DeckPicker extends NavigationDrawerActivity implements OnShowcaseEv
 //        if ((keyCode == KeyEvent.KEYCODE_VOLUME_UP)){
 //            return true;
 //        }
-
         return super.onKeyDown(keyCode, event);
-
     }
-
 
     private void finishWithAnimation() {
         super.finishWithAnimation(ActivityTransitionAnimation.DIALOG_EXIT);
     }
-
 
     // ----------------------------------------------------------------------------
     // CUSTOM METHODS

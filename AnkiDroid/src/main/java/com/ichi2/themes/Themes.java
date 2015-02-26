@@ -383,7 +383,7 @@ public class Themes {
                 break;
 
             case CALLER_FEEDBACK:
-                ((TextView) view).setTextColor(mForegroundColor);
+                ((TextView) view).setTextColor(getForegroundColor());
                 break;
 
             case CALLER_CARD_EDITOR:
@@ -1193,11 +1193,6 @@ public class Themes {
         }
     }
 
-    public static Spannable getSpannableForegroundColor(CharSequence mTitle) {
-        SpannableString span = new SpannableString(mTitle);
-        span.setSpan(new ForegroundColorSpan(mForegroundColor), 0, mTitle.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-        return span;
-    }
 
 
     /////////////////////////////////////////////////////////////////////////////////////////////
@@ -1228,6 +1223,14 @@ public class Themes {
         mCurrentTheme = (mCurrentTheme == 0) ?  themeNames.length : (mCurrentTheme - 1);  // Hack js
     }
 
+    // Needed by Navigation drawer (and others?) to set the action bar title color. Later, set via xml/themes
+    public static Spannable getSpannableForegroundColor(CharSequence mTitle) {
+        SpannableString span = new SpannableString(mTitle);
+        span.setSpan(new ForegroundColorSpan(getForegroundColor()), 0, mTitle.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+        return span;
+    }
+
+
 
     // /////////////////////////////////////////////////////////////////////////////////
     // /////////////////////////////////////////////////////////////////////////////////
@@ -1247,20 +1250,28 @@ public class Themes {
     private static int mDeckPickerReviewTextColor = NOT_INITIALIZED;
 
 
-    // initTheme is intended to replace loadTheme, but in reality everything will likely receive lazy initalization when used,
-    //   and will be defined by attr values stored in themes.xml
+    // initTheme replaces loadTheme, and will be defined by attr values stored in themes.xml
     public static void initTheme() {
-        // Replace all initialization code with lazy (efficient and safe) Initialization in getters
+        mDeckPickerDynamicTextColor = NOT_INITIALIZED;
+        mDeckPickerNonDynamicTextColor = NOT_INITIALIZED;
+        mForegroundColor = NOT_INITIALIZED;
+        mDeckPickerZeroCountTextColor = NOT_INITIALIZED;
+        mDeckPickerNewTextColor = NOT_INITIALIZED;
+        mDeckPickerLearnTextColor = NOT_INITIALIZED;
+        mDeckPickerReviewTextColor = NOT_INITIALIZED;
 
 //        mDeckPickerDynamicTextColor = getThemeColorAttribute(R.attr.dyn_deck);
 //        mDeckPickerNonDynamicTextColor = getThemeColorAttribute(R.attr.non_dyn_deck);
-        mForegroundColor = getThemeColorAttribute(R.attr.foregroundColor);
+//        mForegroundColor = getThemeColorAttribute(R.attr.foregroundColor);
 
+        //
         if (mCurrentTheme == -1) {  // temporary hack js
             mCurrentTheme = THEME_DEEPBLACK;
         }
 
     }
+
+
 
     // Color used for the deck name in the deckpicker, when the deck is normal (non-dynamic)
     // Possibly make mDeckPickerNonDynamicTextColor the same as 'foreground' or 'generic text color' ?

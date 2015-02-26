@@ -105,6 +105,9 @@
 
         <item name="deckPickerListSelector">@drawable/deepblack_deckpicker_list_selector</item>
 
+        <item name="learnTextColor">#440000</item>
+        <item name="reviewTextColor">#8000ff</item>
+        <item name="newTextColor">#234561</item>
         <item name="dyn_deck">@color/dyn_deck</item>
         <item name="non_dyn_deck">#00ffff</item>
 
