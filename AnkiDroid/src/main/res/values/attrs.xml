@@ -59,7 +59,9 @@
 
         <!-- Card browser-specific theme settings -->
         <attr name="card_browser_marked" format="color"/>
+        <attr name="card_browser_normal" format="color"/>
         <attr name="card_browser_suspended" format="color"/>
+
 
 
 

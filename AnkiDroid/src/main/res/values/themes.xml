@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- default values outside of any theme?
+    <!-- Best way to establish default values as a template for themes? Simply have a parent theme -->
+    <!--  Undecided on this one:
     <item name="deckpicker_load_bg">@drawable/deckpicker_load_bg</item>
 -->
 
+    <!-- Most likely cannot use themes based solely on android themes, like these two were, as new code assumes
+    many anki-specific theme fields have been defined -->
     <style name="Theme_Base_Custom_Light" parent="@style/Theme.AppCompat.Light" />
-
     <style name="Theme_Base_Dark" parent="@style/Theme.AppCompat" />
 
     <style name="Theme_Base_Dialog" parent="@android:style/Theme.Dialog" />
@@ -29,43 +31,48 @@
         <item name="foregroundColor">#000000</item>
         <item name="backgroundElevatedColor">#dddddd</item>
         <item name="backgroundColor">#eeeeee</item>
-        <item name="actionBarTextColor">#ff4488</item>
+        <item name="android:colorForeground">#0000</item>
+        <item name="android:colorBackground">@color/white_background</item>
 
         <!--  how to setup action bar colors using attrs ?
         <item name="android:actionMenuTextColor">#88FF33</item>
 -->
+        <item name="actionBarTextColor">#ff4488</item>
 
         <!-- Dynamic text colors -->
+            <!-- DeckPicker -->
         <item name="learnTextColor">#ff0000</item>
         <item name="reviewTextColor">#00ff00</item>
         <item name="newTextColor">#0000ff</item>
-
         <item name="dyn_deck">@color/dyn_deck</item>
         <item name="non_dyn_deck">@color/non_dyn_deck</item>
-
 
         <!-- Taken from bottom_button.xml and flashcard.xml - transparent -->
         <item name="flashCardButtonBackground">#00000000</item>
 
-
         <!-- taken out of Themes.java, deckpicker backgrounds?  -->
         <item name="deckPickerListSelector">@drawable/white_deckpicker_list_selector</item>
 
+        <!-- Card broswer specific theme settings -->
+        <item name="card_browser_marked">#8888ff</item>
+        <item name="card_browser_suspended">#33aaff</item>
+        <item name="card_browser_normal">#dddddd</item>
 
+
+
+        <!-- Misc button styles -->
         <item name="android:buttonStyle">@style/White.Button</item>
         <item name="android:buttonStyleSmall">@style/White.Button.Small</item>
         <item name="android:buttonStyleToggle">@style/White.Button.Toggle</item>
         <item name="android:checkboxStyle">@style/White.CompoundButton.CheckBox</item>
-        <item name="android:colorForeground">#0000</item>
-        <item name="android:colorBackground">@color/white_background</item>
         <item name="android:editTextStyle">@style/White.Edittext</item>
         <item name="android:radioButtonStyle">@style/White.CompoundButton.RadioButton</item>
 
-        <!-- Action bar styles -->
+        <!-- Action bar styles - not sure if these are used correctly -->
         <item name="actionBarStyle">@style/White.ActionBarStyle</item>
         <item name="android:actionBarStyle" tools:targetApi="11">@style/White.ActionBarStyle</item>
 
-        <!-- Dialog styles -->
+        <!-- Dialog, list, and spinner styles - may need to simplify this old approach -->
         <item name="android:alertDialogStyle">@style/White.AlertDialog</item>
         <item name="android:listChoiceIndicatorSingle">@drawable/blue_btn_radio</item>
         <item name="android:listChoiceIndicatorMultiple">@drawable/blue_btn_check</item>
@@ -77,13 +84,13 @@
     </style>
 
 
+    <!--  ================================================================================== -->
     <style name="Theme_Anki_Base" parent="@style/Theme_White">
     </style>
 
 
 
-
-
+    <!--  ================================================================================== -->
     <!-- Blue Theme -->
     <style name="Theme_Blue" parent="@style/Theme_Anki_Base">
 
@@ -93,6 +100,12 @@
 
         <item name="dyn_deck">@color/dyn_deck</item>
         <item name="non_dyn_deck">#00ffff</item>
+
+
+        <!-- Card broswer specific theme settings -->
+        <item name="card_browser_marked">#ff8888</item>
+        <item name="card_browser_suspended">#228888</item>
+
 
 
         <item name="android:buttonStyle">@style/Blue.Button</item>
@@ -116,6 +129,7 @@
         <item name="android:spinnerDropDownItemStyle">@style/Blue.Widget.DropDownItem.Spinner</item>
     </style>
 
+    <!--  ================================================================================== -->
     <!-- Flat Theme -->
     <style name="Theme_Flat" parent="@style/Theme_Anki_Base">
         <item name="foregroundColor">#222222</item>
@@ -164,9 +178,9 @@
         <item name="newTextColor">#ff99FF</item>
 
         <!-- Card broswer specific theme settings -->
-        <item name="card_browser_marked">@color/card_browser_marked</item>
-        <item name="card_browser_suspended">@color/card_browser_suspended</item>
-
+        <item name="card_browser_marked">#444400</item>
+        <item name="card_browser_suspended">#222244</item>
+        <item name="card_browser_normal">#222222</item>
 
 
 

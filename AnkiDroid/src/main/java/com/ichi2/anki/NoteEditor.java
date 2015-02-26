@@ -1153,7 +1153,7 @@ public class NoteEditor extends AnkiActivity {
                 mIntentInformationDialog.dismiss();
             }
         });
-        mCardItemBackground = Themes.getCardBrowserBackground()[0];
+        mCardItemBackground = Themes.getCardBrowserItemBackgroundColors()[0];
         mIntentInformationAdapter.setViewBinder(new SimpleAdapter.ViewBinder() {
             @Override
             public boolean setViewValue(View view, Object arg1, String text) {

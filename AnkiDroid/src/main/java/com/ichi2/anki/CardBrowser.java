@@ -237,8 +237,8 @@ public class CardBrowser extends NavigationDrawerActivity implements ActionBar.O
         Timber.d("onCreate()");
         View mainView = getLayoutInflater().inflate(R.layout.card_browser, null);
         setContentView(mainView);
-        Themes.setContentStyle(mainView, Themes.CALLER_CARDBROWSER);
-        
+//        Themes.setContentStyle(mainView, Themes.CALLER_CARDBROWSER);
+        Themes.setCardBrowserContentStyle(mainView);
         initNavigationDrawer(mainView);
         selectNavigationItem(DRAWER_BROWSER);
         
@@ -260,7 +260,7 @@ public class CardBrowser extends NavigationDrawerActivity implements ActionBar.O
         Intent i = getIntent();
         mWholeCollection = i.hasExtra("fromDeckpicker") && i.getBooleanExtra("fromDeckpicker", false);
 
-        mBackground = Themes.getCardBrowserBackground();
+        mBackground = Themes.getCardBrowserItemBackgroundColors();
 
         SharedPreferences preferences = AnkiDroidApp.getSharedPrefs(getBaseContext());
         Resources res = getResources();

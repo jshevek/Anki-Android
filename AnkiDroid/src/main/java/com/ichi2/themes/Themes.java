@@ -848,9 +848,6 @@ public class Themes {
     }
 
 
-    public static int[] getCardBrowserBackground() {
-        return mCardbrowserItemColors;
-    }
 
 
     public static void setTextViewBackground(View view) {
@@ -1222,8 +1219,10 @@ public class Themes {
     }
 
 
-    // ///////////////////////////////////////////////////////////
-    // Most of the code above this line will eventually be removed. 
+    // /////////////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////////////
+    // Most of the code above this line will eventually be removed.
     // Code below this line reflects the necessary (can't be moved to xml)
     //   fields and methods to dynamically theme the app
 
@@ -1304,6 +1303,11 @@ public class Themes {
 //        return typedValue.resourceId;
 //    }
 
+    public static int[] getCardBrowserItemBackgroundColors() {
+        return mCardbrowserItemColors;
+    }
+
+
     public static int getThemeColorAttribute(int attributeID) {
         TypedValue typedValue = new TypedValue();
         Resources.Theme theme = mContext.getTheme();
@@ -1371,6 +1375,10 @@ public class Themes {
                 lv2.setSelector(R.drawable.white_deckpicker_list_selector);
                 lv2.setDivider(mContext.getResources().getDrawable(R.drawable.white_listdivider));
                 break;
+            case THEME_DEEPBLACK:
+                lv2.setBackgroundResource(R.drawable.deepblack_textview);
+                lv2.setSelector(R.drawable.deepblack_deckpicker_list_selector);
+
             default:
                 break;
         }
